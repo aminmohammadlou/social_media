@@ -19,6 +19,18 @@ class Post(models.Model):
         verbose_name_plural = _('Posts')
 
     def __str__(self):
-        return f"Post by {self.author}"
+        return f"{self.caption} by {self.author}"
 
+
+class Like(models.Model):
+    author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, verbose_name=_('Post'), on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'like'
+        verbose_name = _('Like')
+        verbose_name_plural = _('Likes')
+
+    def __str__(self):
+        return f"Like from {self.author} to {self.post}"
  

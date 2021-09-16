@@ -7,7 +7,6 @@ class Post(models.Model):
     image = models.ImageField(_('Image'), upload_to='post_images', blank=False, editable=False)
     author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
     location = models.CharField(_('Location'), max_length=30, blank=True)
-    likes = models.ManyToManyField(User, verbose_name=_('Likes'), related_name='likers', blank=True, symmetrical=False)
     likes_count = models.IntegerField(_('Likes Count'), default=0, blank=False, null=False)
     comments_count = models.IntegerField(_('Comments Count'), default=0, blank=False, null=False)
     created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 

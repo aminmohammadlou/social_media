@@ -33,4 +33,19 @@ class Like(models.Model):
 
     def __str__(self):
         return f"Like from {self.author} to {self.post}"
- 
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, verbose_name=_('Post'), on_delete=models.CASCADE)
+    message = models.TextField(_('Message'), max_length=500, blank=False, null=False)
+    created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 
+    updated_time = models.DateTimeField(_('Updated Time'), auto_now=True)
+    
+    class Meta:
+        db_table = 'comment'
+        verbose_name = _('Comment')
+        verbose_name_plural = _('Comments')
+
+    def __str__(self):
+        return f"Comment from {self.author} on {self.post}"

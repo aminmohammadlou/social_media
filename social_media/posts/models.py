@@ -7,8 +7,6 @@ class Post(models.Model):
     image = models.ImageField(_('Image'), upload_to='post_images', blank=False, editable=False)
     author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
     location = models.CharField(_('Location'), max_length=30, blank=True)
-    likes_count = models.IntegerField(_('Likes Count'), default=0, blank=False, null=False)
-    comments_count = models.IntegerField(_('Comments Count'), default=0, blank=False, null=False)
     created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 
     updated_time = models.DateTimeField(_('Updated Time'), auto_now=True)
 
@@ -19,19 +17,6 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.caption} by {self.author}"
-
-
-class Like(models.Model):
-    author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, verbose_name=_('Post'), on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'like'
-        verbose_name = _('Like')
-        verbose_name_plural = _('Likes')
-
-    def __str__(self):
-        return f"Like from {self.author} to {self.post}"
 
 
 class Comment(models.Model):

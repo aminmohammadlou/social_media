@@ -1,7 +1,7 @@
 from django.db import models
-from django.db.models import fields
 from rest_framework import serializers
 from users.models import User
+from rest_framework.exceptions import ValidationError
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -27,4 +27,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-        
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=100, required=True)
+    password = serializers.CharField(required=True, write_only=True)
+
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        extra_kwargs = {'usrname': {"validators": []}}

@@ -9,9 +9,9 @@ class Post(models.Model):
     image = models.ImageField(_('Image'), upload_to='post_images', blank=False, editable=False)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), on_delete=models.CASCADE)
     location = models.CharField(_('Location'), max_length=30, blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=_('Likes'), related_name="likers")
     created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 
     updated_time = models.DateTimeField(_('Updated Time'), auto_now=True)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=_('Likes'), related_name="likers")
 
     class Meta:
         db_table = 'post'

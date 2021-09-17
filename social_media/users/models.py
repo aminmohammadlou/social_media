@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_('username'), max_length=100, unique=True)
-    email = models.EmailField(_('email'), max_length=255, unique=True, blank=True)
+    email = models.EmailField(_('email'), max_length=255, unique=True, blank=True, default=None, null=True)
 
     phone_number_validator = RegexValidator(r'^(\+98|0)?9\d{9}$', message=_('Invalid phone number'))
 

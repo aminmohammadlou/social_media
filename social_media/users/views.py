@@ -47,3 +47,12 @@ class LoginAPIView(generics.GenericAPIView):
             
         }
         return Response(data=data, status=status.HTTP_200_OK)
+
+
+class LogoutAPIView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        data = {'success': 'Successfully logged out'}
+        return Response(data=data, status=status.HTTP_200_OK)

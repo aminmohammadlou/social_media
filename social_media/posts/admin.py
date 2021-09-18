@@ -4,7 +4,7 @@ from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'caption', 'author', 'location', 'created_time', 'updated_time')
+    list_display = ('id', 'caption', 'author', 'location', 'created_time', 'updated_time', 'image')
 
     ordering = ('created_time',)
     

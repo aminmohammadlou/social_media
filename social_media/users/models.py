@@ -2,6 +2,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -33,11 +34,27 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number_validator = RegexValidator(r'^(\+98|0)?9\d{9}$', message=_('Invalid phone number'))
 
     phone_number = models.PositiveBigIntegerField(_('phone number'), unique=True, validators=[phone_number_validator])
+
     is_verified = models.BooleanField(_('is verified'), default=False)
     is_active = models.BooleanField(_('is active'), default=True)
     is_staff = models.BooleanField(_('is staff'), default=False)
     created_time = models.DateTimeField(_('created time'), auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'), auto_now=True)
+
+    followers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('user_followers'),
+        related_name="Followers",
+        blank=True,
+        symmetrical=False
+    )
+    following = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('user_following'),
+        related_name="Following",
+        blank=True,
+        symmetrical=False
+    )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['phone_number']

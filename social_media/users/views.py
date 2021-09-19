@@ -4,7 +4,9 @@ from rest_framework import generics, status
 from .serializers import RegistrationSerializer, LoginSerializer
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
+
+User = get_user_model()
 
 
 class RegisterAPIView(generics.GenericAPIView):
@@ -56,3 +58,31 @@ class LogoutAPIView(generics.GenericAPIView):
         request.user.auth_token.delete()
         data = {'success': 'Successfully logged out'}
         return Response(data=data, status=status.HTTP_200_OK)
+
+
+class FollowAPIView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def post(self, request):
+        follower = request.user
+        following_user = User.objects.get(username=request.data['following_user'])
+
+        if follower != following_user:
+            if follower in following_user.followers.all():
+                follower.following.remove(following_user)
+                following_user.followers.remove(follower)
+                message = 'User successfully unfollewed'
+
+            else:
+                follower.following.add(following_user)
+                following_user.followers.add(follower)
+                message = 'User successfully follewed'
+
+            data = {
+                'success': message,
+                'follower': follower.username,
+                'follwing_user': following_user.username,
+            }
+            return Response(data=data, status=status.HTTP_200_OK)
+        else:
+            raise ValidationError("You can't follow/unfollow yourself")

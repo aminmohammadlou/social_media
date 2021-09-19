@@ -1,12 +1,12 @@
 from .models import Post, Comment
 from rest_framework.response import Response
 from rest_framework import generics, status
-from .serializers import PostSerializer, CommentSerializer
+from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer, PostDetailSerilaizer
 from rest_framework import permissions
 
 
 class PublishAPIView(generics.GenericAPIView):
-    serializer_class = PostSerializer
+    serializer_class = PublishPostSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
     def post(self, request):
@@ -75,3 +75,16 @@ class CommentAPIView(generics.GenericAPIView):
             }
         
         return Response(data=data, status=status.HTTP_201_CREATED)
+
+
+class PostListAPIView(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
+
+class PostDetailAPIView(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostDetailSerilaizer
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'pk'

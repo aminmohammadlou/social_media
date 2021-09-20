@@ -1,7 +1,7 @@
 from .models import Post, Comment
 from rest_framework.response import Response
 from rest_framework import generics, status
-from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer, PostDetailSerilaizer
+from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer
 from rest_framework import permissions
 
 
@@ -85,6 +85,6 @@ class PostListAPIView(generics.ListCreateAPIView):
 
 class PostDetailAPIView(generics.RetrieveAPIView):
     queryset = Post.objects.all()
-    serializer_class = PostDetailSerilaizer
+    serializer_class = PostSerializer
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'

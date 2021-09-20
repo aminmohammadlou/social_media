@@ -1,3 +1,4 @@
+from posts.models import Post
 from django.http.response import Http404
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -6,6 +7,7 @@ from .serializers import RegistrationSerializer, LoginSerializer, ChangePassword
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, get_user_model
+from posts.serializers import PostSerializer
 
 User = get_user_model()
 
@@ -131,6 +133,23 @@ class FollowerListAPIView(generics.ListCreateAPIView):
         usernames = [user.username for user in followers]
         data = {
             'followers': usernames
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class UserPostsAPIView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = [PostSerializer]
+
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404()
+        posts = PostSerializer(Post.objects.filter(author_id=pk), many=True).data
+        data = {
+            'posts': posts
         }
 
         return Response(data=data, status=status.HTTP_200_OK)

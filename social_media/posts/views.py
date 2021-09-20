@@ -1,3 +1,4 @@
+from re import S
 from django.http.response import Http404
 from .models import Post, Comment
 from rest_framework.response import Response
@@ -142,3 +143,20 @@ class DeleteCommentAPIView(generics.DestroyAPIView):
             'success': 'Comment successfully deleted'
         }
         return Response(data=data, status=status.HTTP_204_NO_CONTENT)
+
+
+class PostLikesAPIView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404()
+        likes = list(post.likes.all())
+        usernames = [user.username for user in likes]
+        data = {
+            'likes': usernames
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)

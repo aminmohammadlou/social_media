@@ -122,3 +122,23 @@ class DeletePostAPIVIew(generics.DestroyAPIView):
             'success': 'Post successfully deleted'
         }
         return Response(data=data, status=status.HTTP_204_NO_CONTENT)
+
+
+class DeleteCommentAPIView(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get_object(self, pk):
+        try:
+            return Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, pk, format=None):
+        comment = self.get_object(pk)
+        if request.user != comment.author:
+            raise ValidationError('You dont have permission to delete this comment')
+        comment.delete()
+        data = {
+            'success': 'Comment successfully deleted'
+        }
+        return Response(data=data, status=status.HTTP_204_NO_CONTENT)

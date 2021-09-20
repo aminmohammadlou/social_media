@@ -52,3 +52,21 @@ class LoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'password']
         extra_kwargs = {'usrname': {"validators": []}}
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    current_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_current_password(self, value):
+        if not self.context['request'].user.check_password(value):
+            raise serializers.ValidationError('Current password does not match')
+        return value
+        
+
+    def validate_new_password(self, value):
+        return value
+
+    class Meta:
+        model = User
+        fields = ['current_password', 'new_password']

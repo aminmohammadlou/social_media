@@ -1,7 +1,7 @@
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework import generics, status
-from .serializers import RegistrationSerializer, LoginSerializer
+from .serializers import RegistrationSerializer, LoginSerializer, ChangePasswordSerializer
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, get_user_model
@@ -86,3 +86,18 @@ class FollowAPIView(generics.GenericAPIView):
             return Response(data=data, status=status.HTTP_200_OK)
         else:
             raise ValidationError("You can't follow/unfollow yourself")
+
+
+class ChangePasswordAPIVIEW(generics.UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def put(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data ,context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        request.user.set_password(serializer.validated_data['new_password'])
+        request.user.save()
+        data = {
+            'success': 'Password sccessfully changed'
+        }
+        return Response(data=data, status=status.HTTP_204_NO_CONTENT)

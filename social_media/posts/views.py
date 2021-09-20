@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import generics, status
 from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer
 from rest_framework import permissions
+from rest_framework.pagination import PageNumberPagination
 
 
 class PublishAPIView(generics.GenericAPIView):
@@ -81,7 +82,7 @@ class PostListAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (permissions.IsAuthenticated, )
-
+    pagination_class = PageNumberPagination
 
 class PostDetailAPIView(generics.RetrieveAPIView):
     queryset = Post.objects.all()

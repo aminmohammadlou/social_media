@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework import generics, status
@@ -101,3 +102,35 @@ class ChangePasswordAPIVIEW(generics.UpdateAPIView):
             'success': 'Password sccessfully changed'
         }
         return Response(data=data, status=status.HTTP_204_NO_CONTENT)
+
+
+class FollowingListAPIView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404()
+        following = list(user.following.all())
+        usernames = [user.username for user in following]
+        data = {
+            'following': usernames
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class FollowerListAPIView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404()
+        followers = list(user.followers.all())
+        usernames = [user.username for user in followers]
+        data = {
+            'followers': usernames
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)

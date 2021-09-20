@@ -3,7 +3,7 @@ from django.http.response import Http404
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework import generics, status
-from .serializers import RegistrationSerializer, LoginSerializer, ChangePasswordSerializer
+from .serializers import RegistrationSerializer, LoginSerializer, ChangePasswordSerializer, UserSerializer
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, get_user_model
@@ -153,3 +153,10 @@ class UserPostsAPIView(generics.ListCreateAPIView):
         }
 
         return Response(data=data, status=status.HTTP_200_OK)
+
+
+class UserDetailAPIView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'pk'

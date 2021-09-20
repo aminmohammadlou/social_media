@@ -1,4 +1,5 @@
 import random
+from posts.models import Post
 
 from django.core.cache import cache
 from rest_framework import serializers
@@ -70,3 +71,22 @@ class ChangePasswordSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ['current_password', 'new_password']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    posts_count = serializers.SerializerMethodField('get_posts_count')
+    following_count = serializers.SerializerMethodField('get_following_count')
+    followers_count = serializers.SerializerMethodField('get_followers_count')
+
+    def get_posts_count(self, user):
+        return Post.objects.filter(author_id=user.id).count()
+
+    def get_following_count(self, user):
+        return user.following.all().count()
+
+    def get_followers_count(self, user):
+        return user.followers.all().count()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'phone_number', 'created_time', 'posts_count', 'following_count', 'followers_count']

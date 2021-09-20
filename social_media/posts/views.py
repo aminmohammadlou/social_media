@@ -160,3 +160,22 @@ class PostLikesAPIView(generics.ListCreateAPIView):
         }
 
         return Response(data=data, status=status.HTTP_200_OK)
+
+
+class PostCommentsAPIiew(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get(self, request, pk):
+        try:
+            Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404()
+        result = list(Comment.objects.filter(post_id=pk))
+        authors = [comment.author.username for comment in result]
+        messages = [comment.message for comment in result]
+        comments = {author: message for (author, message) in (zip(authors, messages))}
+        data = {
+            'comments': comments
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)

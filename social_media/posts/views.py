@@ -34,9 +34,14 @@ class PublishAPIView(generics.GenericAPIView):
 class LikeAPIView(generics.GenericAPIView):
     permission_classes = (permissions.IsAuthenticated, )
 
-    def post(self, request):
-        post_id = request.data['post_id']
-        post = Post.objects.get(pk=post_id)
+    def get_object(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404
+
+    def post(self, request, pk):
+        post = self.get_object(pk)
         author = request.user
 
         if author in post.likes.all():
@@ -51,7 +56,7 @@ class LikeAPIView(generics.GenericAPIView):
         data = {
             'success': message,
             'author': author.username,
-            'post_id': post_id
+            'post_id': post.id
         }
         return Response(data=data, status=stat)
 
@@ -60,9 +65,15 @@ class CommentAPIView(generics.GenericAPIView):
     serializer_class = CommentSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
-    def post(self, request):
+    def get_object(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404
+
+    def post(self, request, pk):
         author = request.user
-        post = Post.objects.get(pk=request.data['post_id'])
+        post = self.get_object(pk)
         comment = Comment(author=author, post=post)
         serializer = self.serializer_class(comment, data=request.data)
         serializer.is_valid(raise_exception=True)

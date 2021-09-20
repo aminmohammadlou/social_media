@@ -1,9 +1,11 @@
+from django.http.response import Http404
 from .models import Post, Comment
 from rest_framework.response import Response
 from rest_framework import generics, status
 from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.exceptions import ValidationError
 
 
 class PublishAPIView(generics.GenericAPIView):
@@ -89,3 +91,20 @@ class PostDetailAPIView(generics.RetrieveAPIView):
     serializer_class = PostSerializer
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
+
+
+class DeletePostAPIVIew(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get_object(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, pk, format=None):
+        post = self.get_object(pk)
+        if request.user != post.author:
+            raise ValidationError('You dont have permission to delete this post')
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

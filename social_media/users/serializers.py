@@ -1,8 +1,10 @@
-from django.db import models
+import random
+
+from django.core.cache import cache
 from rest_framework import serializers
 from users.models import User
-from rest_framework.exceptions import ValidationError
 
+from users.utils import send_verification_code
 
 class RegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
@@ -25,8 +27,20 @@ class RegistrationSerializer(serializers.ModelSerializer):
         if password != confirm_password:
             raise serializers.ValidationError({'password': 'Passwords must match'})
         user.set_password(password)
-        user.save()
-        return user
+
+        phone_number = self.validated_data['phone_number']
+        verify_code = random.randint(11111, 99999)
+
+        cache_key = f'login_code_{phone_number}'
+        cache.set(cache_key, verify_code, timeout=120)
+
+        sent = send_verification_code(user, verify_code)
+
+        if sent:
+            user.save()
+            return user
+        else:
+            raise serializers.ValidationError('Wrong verification code.try again')
 
 
 class LoginSerializer(serializers.ModelSerializer):

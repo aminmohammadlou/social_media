@@ -10,8 +10,8 @@ class PublishPostSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    likes_count = serializers.IntegerField(default=0)
-    comments_count = serializers.IntegerField(default=0)
+    likes_count = serializers.SerializerMethodField('get_post_likes')
+    comments_count = serializers.SerializerMethodField('get_post_comments')
     author = serializers.SerializerMethodField('get_username_from_author')
 
     class Meta:
@@ -22,6 +22,14 @@ class PostSerializer(serializers.ModelSerializer):
     def get_username_from_author(self, post):
         author = post.author.username
         return author
+
+    def get_post_likes(self, post):
+        likes_count = post.likes.all().count()
+        return likes_count
+
+    def get_post_comments(self, post):
+        comments_count = Comment.objects.filter(post_id=post.id).count()
+        return comments_count
 
 
 class CommentSerializer(serializers.ModelSerializer):

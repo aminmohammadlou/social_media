@@ -107,4 +107,7 @@ class DeletePostAPIVIew(generics.DestroyAPIView):
         if request.user != post.author:
             raise ValidationError('You dont have permission to delete this post')
         post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        data = {
+            'success': 'Post successfully deleted'
+        }
+        return Response(data=data, status=status.HTTP_204_NO_CONTENT)

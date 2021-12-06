@@ -1,38 +1,40 @@
-from django.db import models
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
-from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.db import models
+
+from common.models import BaseModel
+
+User = get_user_model()
 
 
-class Post(models.Model):
-    caption = models.TextField(_('Caption'), max_length=500, blank=True, null=False)
-    image = models.ImageField(_('Image'), upload_to='post_images', blank=False, editable=False)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), on_delete=models.CASCADE)
-    location = models.CharField(_('Location'), max_length=30, blank=True)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=_('Likes'), related_name="likers")
-    created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 
-    updated_time = models.DateTimeField(_('Updated Time'), auto_now=True)
+class Post(BaseModel):
+    image = models.ImageField(_('image'), upload_to='post_images')
+    caption = models.TextField(_('caption'), max_length=500, blank=True)
+    author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.PROTECT)
+    taged_users = models.ManyToManyField(User, verbose_name=_('taged users'), blank=True,
+                                         related_name='taged_users')
+    location = models.CharField(_('location'), max_length=30, blank=True, null=True)
+    likes = models.ManyToManyField(User, verbose_name=_('likes'), blank=True, related_name="post_likers")
 
     class Meta:
-        db_table = 'post'
-        verbose_name = _('Post')
-        verbose_name_plural = _('Posts')
+        verbose_name = _('post')
+        verbose_name_plural = _('posts')
 
     def __str__(self):
-        return f"{self.caption} by {self.author}"
+        return 'id: {}'.format(self.pk)
 
 
-class Comment(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, verbose_name=_('Post'), on_delete=models.CASCADE)
-    message = models.TextField(_('Message'), max_length=500, blank=False, null=False)
-    created_time = models.DateTimeField(_('Created Time'), auto_now_add=True) 
-    updated_time = models.DateTimeField(_('Updated Time'), auto_now=True)
-    
+class Comment(BaseModel):
+    author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.PROTECT, blank=True, null=True)
+    message = models.TextField(_('message'), max_length=500)
+    likes = models.ManyToManyField(User, verbose_name=_('likes'), related_name="comment_likers", blank=True)
+    parent = models.ForeignKey('self', verbose_name=_('parent'), blank=True, null=True, related_name='comments',
+                               on_delete=models.CASCADE)
+
     class Meta:
-        db_table = 'comment'
-        verbose_name = _('Comment')
-        verbose_name_plural = _('Comments')
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
 
     def __str__(self):
-        return f"Comment from {self.author} on {self.post}"
+        return 'id: {}'.format(self.pk)

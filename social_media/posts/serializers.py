@@ -1,38 +1,47 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
+
+from users.serializers import UserSerializer
 from .models import Post, Comment
 
-
-class PublishPostSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(required=True)
-    class Meta:
-        model = Post
-        fields = ['id', 'caption', 'image', 'location', 'created_time']
+User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
-    likes_count = serializers.SerializerMethodField('get_post_likes')
-    comments_count = serializers.SerializerMethodField('get_post_comments')
-    author = serializers.SerializerMethodField('get_username_from_author')
+    author_detail = UserSerializer(source='author', read_only=True)
+    likes_count = serializers.SerializerMethodField()
+    comments_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'author', 'caption', 'image',
-        'location', 'created_time', 'likes_count', 'comments_count']
+        fields = '__all__'
+        read_only_fields = ['author']
 
-    def get_username_from_author(self, post):
-        author = post.author.username
-        return author
+    @staticmethod
+    def get_likes_count(post):
+        return post.likes.all().count()
 
-    def get_post_likes(self, post):
-        likes_count = post.likes.all().count()
-        return likes_count
-
-    def get_post_comments(self, post):
-        comments_count = Comment.objects.filter(post_id=post.id).count()
-        return comments_count
+    @staticmethod
+    def get_comments_count(post):
+        return post.comment_set.count()
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    author_detail = UserSerializer(source='author', read_only=True)
+    post_detail = PostSerializer(source='post', read_only=True)
+    likes_count = serializers.SerializerMethodField()
+    comments_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = ['message', 'created_time']
+        fields = '__all__'
+        read_only_fields = ['author']
+
+    @staticmethod
+    def get_likes_count(comment):
+        return comment.likes.all().count()
+
+    @staticmethod
+    def get_comments_count(comment):
+        return comment.comments.all().count()

@@ -1,181 +1,117 @@
-from re import S
-from django.http.response import Http404
-from .models import Post, Comment
-from rest_framework.response import Response
-from rest_framework import generics, status
-from .serializers import PostSerializer, CommentSerializer, PublishPostSerializer
-from rest_framework import permissions
-from rest_framework.pagination import PageNumberPagination
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+
+from rest_framework import status, viewsets, filters
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from django_filters.rest_framework import DjangoFilterBackend
+
+from notifications.models import Notification
+
+from .models import Post, Comment
+from .permissions import get_post_access_list, get_comment_access_list
+from .serializers import PostSerializer, CommentSerializer
+
+User = get_user_model()
 
 
-class PublishAPIView(generics.GenericAPIView):
-    serializer_class = PublishPostSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+class PostViewSet(viewsets.ModelViewSet):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_scope = 'posts'
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['author_id']
+    ordering = ['pk']
 
-    def post(self, request):
-        author = request.user
-        post = Post(author=author)
-        serializer = self.serializer_class(post, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        data = {
-                'success': 'Post successfully created ',
-                'post': {
-                    'caption': post.caption,
-                    'author': post.author.username,
-                    'location': post.location,
-                    'created_time': post.created_time
-                }
-            }
-        
-        return Response(data=data, status=status.HTTP_201_CREATED)
+    def get_queryset(self):
+        if self.action == 'home_page':
+            return self.queryset.filter(Q(author=self.request.user) | Q(author__in=self.request.user.following.all()))
 
+        if self.action == 'feed':
+            return self.queryset.filter(
+                Q(likes__in=self.request.user.following.all()) | Q(
+                    likes__in=self.request.user.followers.all())).exclude(
+                author=self.request.user).distinct()
 
-class LikeAPIView(generics.GenericAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+        return self.queryset
 
-    def get_object(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404
+    def perform_create(self, serializer):
+        post = serializer.save(author=self.request.user)
+        if self.request.data.get('taged_users'):
+            for taged_user in self.request.data.pop('taged_users'):
+                Notification.objects.create(from_user=self.request.user, post=post, to_user_id=int(taged_user),
+                                            action=Notification.ACTION_CHOICES[2][0])
 
-    def post(self, request, pk):
-        post = self.get_object(pk)
-        author = request.user
+    @action(methods=['post'], detail=True)
+    def like(self, request, *args, **kwargs):
+        user = request.user
+        post = self.get_object()
+        if user in post.likes.all():
+            post.likes.remove(user)
 
-        if author in post.likes.all():
-            post.likes.remove(author)
             message = 'Post successfully unliked'
-            stat = status.HTTP_204_NO_CONTENT
         else:
-            post.likes.add(author)
+            post.likes.add(user)
+            Notification.objects.create(from_user=user, post=post, action=Notification.ACTION_CHOICES[0][0])
             message = 'Post successfully liked'
-            stat = status.HTTP_201_CREATED
+        return Response(data={'post_id': post.id, 'message': message}, status=status.HTTP_200_OK)
 
-        data = {
-            'success': message,
-            'author': author.username,
-            'post_id': post.id
-        }
-        return Response(data=data, status=stat)
+    @action(methods=['get'], detail=False)
+    def home_page(self, request, *args, **kwargs):
+        self.ordering = ['-created_time']
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=False)
+    def feed(self, request, *args, **kwargs):
+        self.ordering = ['-created_time']
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
-class CommentAPIView(generics.GenericAPIView):
+class CommentViewSet(viewsets.ModelViewSet):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_scope = 'comments'
     serializer_class = CommentSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    queryset = Comment.objects.all()
 
-    def get_object(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404
+    def get_queryset(self):
+        if self.request.method == 'GET' and self.request.query_params.get('post_id'):
+            return self.queryset.filter(post_id=self.request.query_params['post_id'])
 
-    def post(self, request, pk):
-        author = request.user
-        post = self.get_object(pk)
-        comment = Comment(author=author, post=post)
-        serializer = self.serializer_class(comment, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        data = {
-                'success': 'Comment successfully added ',
-                'comment': {
-                    'message': comment.message,
-                    'author': comment.author.username,
-                    'post': comment.post.pk,
-                    'created_time': comment.created_time
-                }
-            }
-        
-        return Response(data=data, status=status.HTTP_201_CREATED)
+        access_list = get_comment_access_list(self.request.user)
+        return self.queryset.filter(pk__in=access_list)
 
+    def perform_create(self, serializer):
+        if self.request.data.get('post') is None and self.request.data.get('parent') is None:
+            raise ValidationError({'error': 'Post or parent is required'})
 
-class PostListAPIView(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = (permissions.IsAuthenticated, )
-    pagination_class = PageNumberPagination
+        if self.request.data.get('post') and self.request.data.get('parent'):
+            raise ValidationError({'error': 'One of these two fields is required: post or parent'})
 
-class PostDetailAPIView(generics.RetrieveAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    lookup_field = 'pk'
-    lookup_url_kwarg = 'pk'
+        if self.request.data.get('post') is None:
+            post = Comment.objects.get(pk=self.request.data['parent']).post
+            serializer.save(author=self.request.user, post=post)
 
-
-class DeletePostAPIVIew(generics.DestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
-
-    def get_object(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404
-
-    def delete(self, request, pk, format=None):
-        post = self.get_object(pk)
-        if request.user != post.author:
-            raise ValidationError('You dont have permission to delete this post')
-        post.delete()
-        data = {
-            'success': 'Post successfully deleted'
-        }
-        return Response(data=data, status=status.HTTP_204_NO_CONTENT)
-
-
-class DeleteCommentAPIView(generics.DestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
-
-    def get_object(self, pk):
-        try:
-            return Comment.objects.get(pk=pk)
-        except Comment.DoesNotExist:
-            raise Http404
-
-    def delete(self, request, pk, format=None):
-        comment = self.get_object(pk)
-        if request.user != comment.author:
-            raise ValidationError('You dont have permission to delete this comment')
-        comment.delete()
-        data = {
-            'success': 'Comment successfully deleted'
-        }
-        return Response(data=data, status=status.HTTP_204_NO_CONTENT)
-
-
-class PostLikesAPIView(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticated, ]
-
-    def get(self, request, pk):
-        try:
-            post = Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404()
-        likes = list(post.likes.all())
-        usernames = [user.username for user in likes]
-        data = {
-            'likes': usernames
-        }
-
-        return Response(data=data, status=status.HTTP_200_OK)
-
-
-class PostCommentsAPIiew(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticated, ]
-
-    def get(self, request, pk):
-        try:
-            Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404()
-        result = list(Comment.objects.filter(post_id=pk))
-        authors = [comment.author.username for comment in result]
-        messages = [comment.message for comment in result]
-        comments = {author: message for (author, message) in (zip(authors, messages))}
-        data = {
-            'comments': comments
-        }
-
-        return Response(data=data, status=status.HTTP_200_OK)
+        else:
+            serializer.save(author=self.request.user)

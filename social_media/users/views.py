@@ -1,0 +1,148 @@
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+
+from rest_framework.views import APIView
+from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from .permissions import IsOwnerOrFollower
+from .serializers import (RegistrationSerializer, ForgetPasswordSerializer, SetPasswordSerializer, LoginSerializer,
+                          ChangePasswordSerializer, UserSerializer, VerifySerializer, FollowSerializer)
+
+User = get_user_model()
+
+
+class RegisterAPIView(APIView):
+    serializer_class = RegistrationSerializer
+    throttle_scope = 'users'
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        data = {
+            'success': 'Verification code has been sent to your email',
+            'email': user.email
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class VerifyAPIView(APIView):
+    serializer_class = VerifySerializer
+    throttle_scope = 'users'
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        data = {
+            'success': 'Successfully verified',
+            'token': serializer.validated_data['token']
+        }
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class ForgetPasswordAPIView(APIView):
+    serializer_class = ForgetPasswordSerializer
+    throttle_scope = 'users'
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        data = {
+            'success': 'Verification code has been sent to your email',
+            'email': request.data['email']
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class SetPasswordAPIView(generics.UpdateAPIView):
+    serializer_class = SetPasswordSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_scope = 'users'
+
+    def put(self, request, *args, **kwargs):
+        serializer = self.serializer_class(request.user, data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = {
+            'success': 'Password successfully set'
+        }
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class LoginAPIView(APIView):
+    serializer_class = LoginSerializer
+    throttle_scope = 'users'
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        return Response(data=serializer.validated_data, status=status.HTTP_200_OK)
+
+
+class FollowAPIView(APIView):
+    serializer_class = FollowSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_scope = 'users'
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        return Response(data=serializer.validated_data, status=status.HTTP_200_OK)
+
+
+class ChangePasswordAPIVIEW(generics.UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_scope = 'users'
+
+    def put(self, request, *args, **kwargs):
+        serializer = self.serializer_class(request.user, data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = {
+            'success': 'Password successfully changed'
+        }
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class FollowingListAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsOwnerOrFollower]
+    serializer_class = UserSerializer
+    throttle_scope = 'users'
+
+    def get(self, request, pk):
+        user = get_object_or_404(User, pk=pk)
+        followings = user.following.all()
+        serializer = self.serializer_class(followings, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class FollowerListAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsOwnerOrFollower]
+    serializer_class = UserSerializer
+    throttle_scope = 'users'
+
+    def get(self, request, pk):
+        user = get_object_or_404(User, pk=pk)
+        followers = user.followers.all()
+        serializer = self.serializer_class(followers, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class UserDetailAPIView(generics.RetrieveAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'pk'

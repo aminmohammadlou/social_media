@@ -118,8 +118,12 @@ class CommentViewSet(viewsets.ModelViewSet):
             raise ValidationError({'error': 'One of these two fields is required: post or parent'})
 
         if self.request.data.get('post') is None:
-            post = Comment.objects.get(pk=self.request.data['parent']).post
-            serializer.save(author=self.request.user, post=post)
+            comment = Comment.objects.get(pk=self.request.data['parent'])
+            serializer.save(author=self.request.user, post=comment.post)
+            Notification.objects.create(from_user=self.request.user, comment=comment,
+                                        action=Notification.ACTION_CHOICES[3][0])
 
         else:
-            serializer.save(author=self.request.user)
+            comment = serializer.save(author=self.request.user)
+            Notification.objects.create(from_user=self.request.user, post=comment.post,
+                                        action=Notification.ACTION_CHOICES[3][0])

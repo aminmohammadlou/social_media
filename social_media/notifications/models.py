@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from common.models import BaseModel
-from posts.models import Post
+from posts.models import Post, Comment
 
 User = get_user_model()
 
@@ -18,6 +18,8 @@ class Notification(BaseModel):
     post = models.ForeignKey(Post, verbose_name=_('post'), blank=True, null=True, on_delete=models.PROTECT)
     to_user = models.ForeignKey(User, verbose_name=_('to_user'), blank=True, null=True, on_delete=models.PROTECT,
                                 related_name='to_user')
+    comment = models.ForeignKey(Comment, verbose_name=_('comment'), blank=True, null=True, on_delete=models.PROTECT,
+                                related_name='comment')
     ACTION_CHOICES = (
         (LIKE, _('Like')),
         (FOLLOW, _('Follow')),

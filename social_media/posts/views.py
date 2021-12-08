@@ -47,6 +47,14 @@ class PostViewSet(viewsets.ModelViewSet):
                 Notification.objects.create(from_user=self.request.user, post=post, to_user_id=int(taged_user),
                                             action=Notification.ACTION_CHOICES[2][0])
 
+    def perform_update(self, serializer):
+        super(PostViewSet, self).perform_update(serializer)
+        post = self.get_object()
+        if self.request.data.get('taged_users'):
+            for taged_user in serializer['taged_users'].value:
+                Notification.objects.get_or_create(from_user=self.request.user, post=post, to_user_id=int(taged_user),
+                                                   action=Notification.ACTION_CHOICES[2][0])
+
     @action(methods=['post'], detail=True)
     def like(self, request, *args, **kwargs):
         user = request.user

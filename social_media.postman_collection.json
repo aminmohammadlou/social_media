@@ -15,7 +15,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "ali geramand",
+							"value": "iliyagr",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mowogi5124@nefacility.com",
 							"type": "text"
 						},
 						{
@@ -27,28 +32,18 @@
 							"key": "confirm_password",
 							"value": "1422",
 							"type": "text"
-						},
-						{
-							"key": "phone_number",
-							"value": "09385623413",
-							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/register",
-					"protocol": "http",
+					"raw": "{{base_url}}/users/register/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"users",
-						"register"
+						"register",
+						""
 					]
 				}
 			},
@@ -63,7 +58,12 @@
 							"formdata": [
 								{
 									"key": "username",
-									"value": "ali geramand",
+									"value": "iliyagr",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mowogi5124@nefacility.com",
 									"type": "text"
 								},
 								{
@@ -75,16 +75,11 @@
 									"key": "confirm_password",
 									"value": "1422",
 									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "09385623413",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/register",
+							"raw": "http://127.0.0.1:8000/api/v1/users/register/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -95,18 +90,20 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"users",
-								"register"
+								"register",
+								""
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 17:47:54 GMT"
+							"value": "Wed, 24 Nov 2021 06:51:14 GMT"
 						},
 						{
 							"key": "Server",
@@ -130,7 +127,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "63"
+							"value": "95"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -142,12 +139,25 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": \"Successfully Registered\",\n    \"username\": \"ali geramand\"\n}"
+					"body": "{\n    \"success\": \"Verification code has been sent to your email\",\n    \"email\": \"mowogi5124@nefacility.com\"\n}"
 				}
 			]
 		},
 		{
-			"name": "User Login Request",
+			"name": "User Verify Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"token\", data.token.access);",
+							"pm.environment.set(\"refresh\", data.token.refresh);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -155,37 +165,32 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "username",
-							"value": "amin",
+							"key": "email",
+							"value": "bomibe5143@terasd.com",
 							"type": "text"
 						},
 						{
-							"key": "password",
-							"value": "1422",
+							"key": "verification_code",
+							"value": "28970",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login",
-					"protocol": "http",
+					"raw": "{{base_url}}/users/verify/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"users",
-						"login"
+						"verify",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "User Login Request",
+					"name": "User Verify Request",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -193,31 +198,26 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "username",
-									"value": "amin",
+									"key": "email",
+									"value": "bomibe5143@terasd.com",
 									"type": "text"
 								},
 								{
-									"key": "password",
-									"value": "1422",
+									"key": "verification_code",
+									"value": "28970",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/login",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/verify/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
 								"users",
-								"login"
+								"verify",
+								""
 							]
 						}
 					},
@@ -227,7 +227,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 17:49:33 GMT"
+							"value": "Wed, 01 Dec 2021 09:54:29 GMT"
 						},
 						{
 							"key": "Server",
@@ -251,7 +251,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "105"
+							"value": "502"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -263,187 +263,64 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": \"Successfully logged in\",\n    \"username\": \"amin\",\n    \"token\": \"d7646ff9912f318fda620ee5e605b8d8a681fb47\"\n}"
+					"body": "{\n    \"success\": \"Successfully verified\",\n    \"token\": {\n        \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzODYxMTY2OSwianRpIjoiZWUyODVlNjE1NmYxNDM4ZGJjZjA2ZjQ3ZTFjNmMyMmMiLCJ1c2VyX2lkIjoxOH0.jNu__ui4bQ3-LOvYybbs3nwV14zH4sxisETQhqgt5P4\",\n        \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4NDM4ODY5LCJqdGkiOiI4N2FkNGM2OWQwMTY0ZjBlOTVhMjliMzdkMjlhNzI5YSIsInVzZXJfaWQiOjE4fQ.PVdjkNy2cpO22pLOmXF03ba8WlalKYMZY2OzBAyk9RM\",\n        \"lifetime\": 86400\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "User Logout Request",
+			"name": "User Forget Password Request",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token d7646ff9912f318fda620ee5e605b8d8a681fb47",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/logout",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						"logout"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Logout Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token d7646ff9912f318fda620ee5e605b8d8a681fb47",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/logout",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"logout"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 17:51:39 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "37"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Successfully logged out\"\n}"
-				}
-			]
-		},
-		{
-			"name": "User Follow Request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "following_user",
-							"value": "amin",
+							"key": "email",
+							"value": "bomibe5143@terasd.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/follow",
-					"protocol": "http",
+					"raw": "{{base_url}}/users/password/forget/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"users",
-						"follow"
+						"password",
+						"forget",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "User Follow Request",
+					"name": "User Forget Password Request",
 					"originalRequest": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "following_user",
-									"value": "amin",
+									"key": "email",
+									"value": "bomibe5143@terasd.com",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/follow",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/password/forget/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
 								"users",
-								"follow"
+								"password",
+								"forget",
+								""
 							]
 						}
 					},
@@ -453,7 +330,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 17:57:06 GMT"
+							"value": "Wed, 01 Dec 2021 08:09:26 GMT"
 						},
 						{
 							"key": "Server",
@@ -477,7 +354,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "82"
+							"value": "91"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -489,227 +366,94 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": \"User successfully follewed\",\n    \"follower\": \"mahdi\",\n    \"follwing_user\": \"amin\"\n}"
+					"body": "{\n    \"success\": \"Verification code has been sent to your email\",\n    \"email\": \"bomibe5143@terasd.com\"\n}"
 				}
 			]
 		},
 		{
-			"name": "User Unfollow Request",
+			"name": "User Set Password Request",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "following_user",
-							"value": "amin",
-							"type": "text"
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
 						}
 					]
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/follow",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						"follow"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Unfollow Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "following_user",
-									"value": "amin",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/follow",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"follow"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 17:59:11 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "84"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"User successfully unfollewed\",\n    \"follower\": \"mahdi\",\n    \"follwing_user\": \"amin\"\n}"
-				}
-			]
-		},
-		{
-			"name": "User Change Password Request",
-			"request": {
 				"method": "PUT",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "current_password",
+							"key": "password",
 							"value": "1422",
 							"type": "text"
 						},
 						{
-							"key": "new_password",
-							"value": "1234",
+							"key": "confirm_password",
+							"value": "1422",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/change-password",
-					"protocol": "http",
+					"raw": "{{base_url}}/users/password/set/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"users",
-						"change-password"
+						"password",
+						"set",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "User Change Password Request",
+					"name": "User Set Password Request",
 					"originalRequest": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "current_password",
+									"key": "password",
 									"value": "1422",
 									"type": "text"
 								},
 								{
-									"key": "new_password",
-									"value": "1234",
+									"key": "confirm_password",
+									"value": "1422",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/change-password",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/password/set/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
 								"users",
-								"change-password"
+								"password",
+								"set",
+								""
 							]
 						}
 					},
-					"status": "No Content",
-					"code": 204,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:01:24 GMT"
+							"value": "Wed, 01 Dec 2021 09:58:50 GMT"
 						},
 						{
 							"key": "Server",
@@ -733,7 +477,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "42"
+							"value": "39"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -745,13 +489,431 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": \"Password sccessfully changed\"\n}"
+					"body": "{\n    \"success\": \"Password successfully set\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Login Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"token\", data.access);",
+							"pm.environment.set(\"refresh\", data.refresh);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "aminml",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1422",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/login/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Login Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "mahdihd",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1422",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Nov 2021 07:48:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "455"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNzk5OTMzMywianRpIjoiMTc4NDc2MDk4NWE2NGE0MDg3MDUwMzVmYmMyNmUwZjIiLCJ1c2VyX2lkIjo5fQ.2xmkJIQUp15ClxqWtNjMecFjStZP6KsycRXBn7BsFxI\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3ODI2NTMzLCJqdGkiOiI3Y2I5ZDRmMzNmMjY0YTliYjhlNTIxMTZhMTVjZjUyNyIsInVzZXJfaWQiOjl9.JyezdHakR1uHmipttGHYpZv1Lgqai97YujZtZ0cqQgw\",\n    \"lifetime\": 86400\n}"
+				}
+			]
+		},
+		{
+			"name": "User Change Password Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "current_password",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "new_password",
+							"value": "1422",
+							"type": "text"
+						},
+						{
+							"key": "confirm_new_password",
+							"value": "1422",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/password/change/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"password",
+						"change",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Change Password Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "current_password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "1422",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/password/change/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"password",
+								"change",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Nov 2021 09:45:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "PUT, PATCH, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"Password successfully changed\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Follow/Unfollow Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "following_user",
+							"value": "mahdihd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/follow/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Follow/Unfollow Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "following_user",
+									"value": "mahdihd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/follow/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"follow",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 11:43:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"User successfully followed\",\n    \"follower\": \"aminml\",\n    \"following_user\": \"mahdihd\"\n}"
 				}
 			]
 		},
 		{
 			"name": "User Followings list Request",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -761,20 +923,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/8/following",
-					"protocol": "http",
+					"raw": "{{base_url}}/users/{{user_id}}/following/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"users",
-						"8",
-						"following"
+						"{{user_id}}",
+						"following",
+						""
 					]
 				}
 			},
@@ -791,7 +948,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/8/following",
+							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/following/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -802,9 +959,11 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"users",
-								"8",
-								"following"
+								"{{user_id}}",
+								"following",
+								""
 							]
 						}
 					},
@@ -814,322 +973,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:03:40 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "GET, POST, HEAD, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "45"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"following\": [\n        \"amin\",\n        \"mahdi\",\n        \"ali geramand\"\n    ]\n}"
-				}
-			]
-		},
-		{
-			"name": "User Followers list Request",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/8/followers",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						"8",
-						"followers"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Followers list Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/8/followers",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"8",
-								"followers"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:06:16 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "GET, POST, HEAD, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "45"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"followers\": [\n        \"amin\",\n        \"mahdi\",\n        \"ali geramand\"\n    ]\n}"
-				}
-			]
-		},
-		{
-			"name": "User Posts list Request",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/5/posts",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						"5",
-						"posts"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Posts list Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/5/posts",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"5",
-								"posts"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:08:41 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "GET, POST, HEAD, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "663"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"posts\": [\n        {\n            \"id\": 12,\n            \"author\": \"amin\",\n            \"caption\": \"blah 3\",\n            \"image\": \"/media/post_images/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses_i64tGd7.jpg\",\n            \"location\": \"\",\n            \"created_time\": \"2021-09-19T22:25:09.179310+04:30\",\n            \"likes_count\": 2,\n            \"comments_count\": 1\n        },\n        {\n            \"id\": 13,\n            \"author\": \"amin\",\n            \"caption\": \"blah 4\",\n            \"image\": \"/media/post_images/download.jpeg\",\n            \"location\": \"karaj\",\n            \"created_time\": \"2021-09-19T22:29:30.496335+04:30\",\n            \"likes_count\": 0,\n            \"comments_count\": 0\n        },\n        {\n            \"id\": 14,\n            \"author\": \"amin\",\n            \"caption\": \"blah 5\",\n            \"image\": \"/media/post_images/Landscape-Color.jpg\",\n            \"location\": \"karaj\",\n            \"created_time\": \"2021-09-19T22:35:45.587025+04:30\",\n            \"likes_count\": 0,\n            \"comments_count\": 0\n        }\n    ]\n}"
-				}
-			]
-		},
-		{
-			"name": "User Detail Request",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/5/detail",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						"5",
-						"detail"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Detail Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/5/detail",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"5",
-								"detail"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:12:24 GMT"
+							"value": "Wed, 24 Nov 2021 12:47:27 GMT"
 						},
 						{
 							"key": "Server",
@@ -1153,7 +997,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "171"
+							"value": "372"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1165,13 +1009,247 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 5,\n    \"username\": \"amin\",\n    \"email\": null,\n    \"phone_number\": 9387425503,\n    \"created_time\": \"2021-09-19T08:51:34.844864+04:30\",\n    \"posts_count\": 3,\n    \"following_count\": 2,\n    \"followers_count\": 0\n}"
+					"body": "[\n    {\n        \"id\": 12,\n        \"username\": \"iliyagr\",\n        \"email\": \"mowogi5124@nefacility.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T10:21:14.032497+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 13,\n        \"username\": \"test\",\n        \"email\": \"test@test.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "User Followers list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/followers/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"followers",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Followers list Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/followers/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"{{user_id}}",
+								"followers",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Nov 2021 12:50:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "364"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9,\n        \"username\": \"mahdihd\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-23T12:39:30.620656+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 13,\n        \"username\": \"test\",\n        \"email\": \"test@test.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "User Detail Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/detail/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"detail",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Detail Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/detail/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"{{user_id}}",
+								"detail",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Nov 2021 13:17:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "192"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"username\": \"aminml\",\n    \"email\": \"aminmohammadlou99@gmail.com\",\n    \"phone_number\": null,\n    \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n    \"posts_count\": 1,\n    \"following_count\": 2,\n    \"followers_count\": 2\n}"
 				}
 			]
 		},
 		{
 			"name": "Publish Post Request",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -1185,35 +1263,40 @@
 					"formdata": [
 						{
 							"key": "caption",
-							"value": "This is a sample post",
+							"value": "test post 10",
 							"type": "text"
 						},
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/home/amin/Pictures/download.jpeg"
+							"src": "/home/user/Pictures/Screenshot from 2021-11-23 15-01-42.png"
 						},
 						{
 							"key": "location",
 							"value": "Tehran",
 							"type": "text"
+						},
+						{
+							"key": "taged_users",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "taged_users",
+							"value": "9",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/publish",
-					"protocol": "http",
+					"raw": "{{base_url}}/posts/post/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"posts",
-						"publish"
+						"post",
+						""
 					]
 				}
 			},
@@ -1234,357 +1317,33 @@
 							"formdata": [
 								{
 									"key": "caption",
-									"value": "This is a sample post",
+									"value": "test post 10",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/home/amin/Pictures/download.jpeg"
+									"src": "/home/user/Pictures/Screenshot from 2021-11-23 15-01-42.png"
 								},
 								{
 									"key": "location",
 									"value": "Tehran",
 									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/publish",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"posts",
-								"publish"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:25:33 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "165"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Post successfully created \",\n    \"post\": {\n        \"caption\": \"This is a sample post\",\n        \"author\": \"mahdi\",\n        \"location\": \"Tehran\",\n        \"created_time\": \"2021-09-20T18:25:33.169043Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Post Like Request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/like/12",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"posts",
-						"like",
-						"12"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Post Like Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/like/12",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"posts",
-								"like",
-								"12"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:22:10 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "67"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Post successfully liked\",\n    \"author\": \"mahdi\",\n    \"post_id\": 12\n}"
-				}
-			]
-		},
-		{
-			"name": "Post unlike Request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/like/12",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"posts",
-						"like",
-						"12"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Post unlike Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/like/12",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"posts",
-								"like",
-								"12"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:23:55 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "69"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Post successfully unliked\",\n    \"author\": \"mahdi\",\n    \"post_id\": 12\n}"
-				}
-			]
-		},
-		{
-			"name": "Comment Request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "message",
-							"value": "This is a sample comment",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/comment/12",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"posts",
-						"comment",
-						"12"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Comment Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
+								},
 								{
-									"key": "message",
-									"value": "This is a sample comment",
+									"key": "taged_users",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "taged_users",
+									"value": "9",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/comment/12",
+							"raw": "http://127.0.0.1:8000/api/v1/posts/post/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1595,9 +1354,10 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"posts",
-								"comment",
-								"12"
+								"post",
+								""
 							]
 						}
 					},
@@ -1607,110 +1367,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:25:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "POST, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "162"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Comment successfully added \",\n    \"comment\": {\n        \"message\": \"This is a sample comment\",\n        \"author\": \"mahdi\",\n        \"post\": 12,\n        \"created_time\": \"2021-09-20T18:25:54.693149Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Post List Request",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/posts-list",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"posts",
-						"posts-list"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Post List Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/posts-list",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"posts",
-								"posts-list"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:27:30 GMT"
+							"value": "Mon, 29 Nov 2021 10:45:05 GMT"
 						},
 						{
 							"key": "Server",
@@ -1734,7 +1391,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "594"
+							"value": "539"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1746,9 +1403,203 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"count\": 5,\n    \"next\": \"http://127.0.0.1:8000/api/posts/posts-list?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 12,\n            \"author\": \"amin\",\n            \"caption\": \"blah 3\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses_i64tGd7.jpg\",\n            \"location\": \"\",\n            \"created_time\": \"2021-09-19T22:25:09.179310+04:30\",\n            \"likes_count\": 1,\n            \"comments_count\": 2\n        },\n        {\n            \"id\": 13,\n            \"author\": \"amin\",\n            \"caption\": \"blah 4\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download.jpeg\",\n            \"location\": \"karaj\",\n            \"created_time\": \"2021-09-19T22:29:30.496335+04:30\",\n            \"likes_count\": 0,\n            \"comments_count\": 0\n        }\n    ]\n}"
+					"body": "{\n    \"id\": 21,\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"created_time\": \"2021-11-29T14:15:05.633489+03:30\",\n    \"updated_time\": \"2021-11-29T14:15:05.633527+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_p4ykrnC.png\",\n    \"caption\": \"test post 10\",\n    \"location\": \"Tehran\",\n    \"author\": 1,\n    \"taged_users\": [\n        1,\n        9\n    ],\n    \"likes\": []\n}"
 				}
 			]
+		},
+		{
+			"name": "Edit Post Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png"
+						},
+						{
+							"key": "caption",
+							"value": "test post 3",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "this",
+							"type": "text"
+						},
+						{
+							"key": "taged_users",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "likes",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/posts/post/{{post_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"{{post_id}}",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Post Request",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png"
+								},
+								{
+									"key": "caption",
+									"value": "test post 3",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "this",
+									"type": "text"
+								},
+								{
+									"key": "taged_users",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "likes",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/posts/post/{{post_id}}/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"post",
+								"{{post_id}}",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 28 Nov 2021 13:22:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "523"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 20,\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"created_time\": \"2021-11-28T14:17:59.154408+03:30\",\n    \"updated_time\": \"2021-11-28T16:52:50.799570+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50_xiJI4k6.png\",\n    \"caption\": \"test post 3\",\n    \"location\": \"this\",\n    \"taged_users\": [\n        1\n    ],\n    \"likes\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Post Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/{{post_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"{{post_id}}",
+						""
+					]
+				}
+			},
+			"response": []
 		},
 		{
 			"name": "Post Detail Request",
@@ -1756,6 +1607,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -1769,20 +1630,15 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/post-detail/12",
-					"protocol": "http",
+					"raw": "{{base_url}}/posts/post/{{post_id}}/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"posts",
-						"post-detail",
-						"12"
+						"post",
+						"{{post_id}}",
+						""
 					]
 				}
 			},
@@ -1803,7 +1659,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/post-detail/12",
+							"raw": "http://127.0.0.1:8000/api/v1/posts/post/{{post_id}}/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1814,9 +1670,11 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"posts",
-								"post-detail",
-								"12"
+								"post",
+								"{{post_id}}",
+								""
 							]
 						}
 					},
@@ -1826,7 +1684,210 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:29:45 GMT"
+							"value": "Sun, 28 Nov 2021 14:20:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "818"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 17,\n    \"likes_count\": 0,\n    \"comments_count\": 2,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 13,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"comments\": [\n        {\n            \"id\": 3,\n            \"created_time\": \"2021-11-28T17:10:13.275002+03:30\",\n            \"updated_time\": \"2021-11-28T17:10:13.275058+03:30\",\n            \"message\": \"htrcgfhtfgh\",\n            \"author\": 12,\n            \"post\": 17,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 4,\n            \"created_time\": \"2021-11-28T17:11:26.243296+03:30\",\n            \"updated_time\": \"2021-11-28T17:11:26.243331+03:30\",\n            \"message\": \"utyurxtgdghxf\",\n            \"author\": 13,\n            \"post\": 17,\n            \"parent\": null,\n            \"likes\": []\n        }\n    ],\n    \"created_time\": \"2021-11-28T14:04:09.598826+03:30\",\n    \"updated_time\": \"2021-11-28T14:04:09.599813+03:30\",\n    \"image\": null,\n    \"caption\": \"test post 2\",\n    \"location\": \"malard\",\n    \"taged_users\": [\n        9,\n        12\n    ],\n    \"likes\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Posts list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/?user_id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						""
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Posts list Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/posts/post/?user_id=1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"post",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 08:41:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5434"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 14,\n    \"next\": \"http://127.0.0.1:8000/api/v1/posts/post/?page=2&user_id=1\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 8,\n            \"created_time\": \"2021-11-24T16:33:59.275821+03:30\",\n            \"updated_time\": \"2021-11-25T13:32:49.212058+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42.png\",\n            \"caption\": \"blah\",\n            \"location\": \"tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 3,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-25T16:15:39.882101+03:30\",\n            \"updated_time\": \"2021-11-25T16:15:39.882139+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50.png\",\n            \"caption\": \"This is a sample post\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:52:16.897974+03:30\",\n            \"updated_time\": \"2021-11-28T12:52:16.898044+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_fKdzAn6.png\",\n            \"caption\": \"\",\n            \"location\": null,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 8,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:55:34.510085+03:30\",\n            \"updated_time\": \"2021-11-28T12:55:34.510121+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_RdsnRLc.png\",\n            \"caption\": \"test post\",\n            \"location\": null,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:55:48.617368+03:30\",\n            \"updated_time\": \"2021-11-28T12:55:48.617401+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_pudgB7a.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 10,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:56:56.394519+03:30\",\n            \"updated_time\": \"2021-11-28T13:06:18.642486+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_JFSsCK4.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:14.500911+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:14.500992+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_OzpF5Kx.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:35.399494+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:35.399531+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_d8NZpdE.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 13,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:22:27.482220+03:30\",\n            \"updated_time\": \"2021-11-28T13:22:27.482256+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_v5jOJEL.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:23:05.868122+03:30\",\n            \"updated_time\": \"2021-11-28T13:23:05.868185+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_Gb6mfco.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "User Home Page Posts List Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/home_page/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"home_page",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Home Page Posts List Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/post/home_page/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"post",
+								"home_page",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 02 Dec 2021 13:06:57 GMT"
 						},
 						{
 							"key": "Server",
@@ -1850,7 +1911,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "282"
+							"value": "5744"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1862,76 +1923,64 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 12,\n    \"author\": \"amin\",\n    \"caption\": \"blah 3\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses_i64tGd7.jpg\",\n    \"location\": \"\",\n    \"created_time\": \"2021-09-19T22:25:09.179310+04:30\",\n    \"likes_count\": 1,\n    \"comments_count\": 2\n}"
+					"body": "{\n    \"count\": 17,\n    \"next\": \"http://127.0.0.1:8000/api/v1/posts/post/home_page/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 21,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T14:15:05.633489+03:30\",\n            \"updated_time\": \"2021-11-29T14:15:05.633527+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_p4ykrnC.png\",\n            \"caption\": \"test post 10\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 19,\n            \"author_detail\": {\n                \"id\": 13,\n                \"username\": \"test\",\n                \"email\": \"test@test.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T14:15:48.562474+03:30\",\n            \"updated_time\": \"2021-11-28T16:05:36.255315+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50_8mOeY9K.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 13,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 18,\n            \"author_detail\": {\n                \"id\": 13,\n                \"username\": \"test\",\n                \"email\": \"test@test.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 9,\n            \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n            \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n            \"caption\": \"frdgd\",\n            \"location\": \"fds\",\n            \"author\": 13,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 17,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 3,\n            \"comments_count\": 2,\n            \"created_time\": \"2021-11-28T14:04:09.598826+03:30\",\n            \"updated_time\": \"2021-11-28T17:55:25.074207+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-17_10-40-33.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": [\n                9,\n                12,\n                13\n            ]\n        },\n        {\n            \"id\": 16,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T14:03:14.984670+03:30\",\n            \"updated_time\": \"2021-11-28T14:03:14.984709+03:30\",\n            \"image\": null,\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 15,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:55:38.612939+03:30\",\n            \"updated_time\": \"2021-11-28T13:55:38.612977+03:30\",\n            \"image\": null,\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:23:05.868122+03:30\",\n            \"updated_time\": \"2021-11-28T13:23:05.868185+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_Gb6mfco.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 13,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:22:27.482220+03:30\",\n            \"updated_time\": \"2021-11-28T13:22:27.482256+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_v5jOJEL.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:35.399494+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:35.399531+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_d8NZpdE.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:14.500911+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:14.500992+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_OzpF5Kx.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        }\n    ]\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete Post Request",
+			"name": "User Feed Posts List Request",
 			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/delete-post/15",
-					"protocol": "http",
+					"raw": "{{base_url}}/posts/post/feed/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"posts",
-						"delete-post",
-						"15"
+						"post",
+						"feed",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete Post Request",
+					"name": "User Feed Posts List Request",
 					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/delete-post/15",
-							"protocol": "http",
+							"raw": "{{base_url}}/posts/post/feed/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
 								"posts",
-								"delete-post",
-								"15"
+								"post",
+								"feed",
+								""
 							]
 						}
 					},
-					"status": "No Content",
-					"code": 204,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:31:52 GMT"
+							"value": "Thu, 02 Dec 2021 13:06:23 GMT"
 						},
 						{
 							"key": "Server",
@@ -1947,7 +1996,7 @@
 						},
 						{
 							"key": "Allow",
-							"value": "DELETE, OPTIONS"
+							"value": "GET, HEAD, OPTIONS"
 						},
 						{
 							"key": "X-Frame-Options",
@@ -1955,7 +2004,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "39"
+							"value": "1123"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1967,13 +2016,301 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": \"Post successfully deleted\"\n}"
+					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 23,\n            \"author_detail\": {\n                \"id\": 18,\n                \"username\": \"test_1\",\n                \"email\": \"bomibe5143@terasd.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-30T14:31:28.254525+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-02T15:15:36.038478+03:30\",\n            \"updated_time\": \"2021-12-02T16:06:05.825605+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Netflix-new-icon.png\",\n            \"caption\": \"hytyhfdgdf\",\n            \"location\": null,\n            \"author\": 18,\n            \"taged_users\": [],\n            \"likes\": [\n                9\n            ]\n        },\n        {\n            \"id\": 22,\n            \"author_detail\": {\n                \"id\": 18,\n                \"username\": \"test_1\",\n                \"email\": \"bomibe5143@terasd.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-30T14:31:28.254525+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-01T15:24:54.217062+03:30\",\n            \"updated_time\": \"2021-12-02T16:06:58.894669+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/photo-1453728013993-6d66e9c9123a.jpeg\",\n            \"caption\": \"hfxhdf\",\n            \"location\": null,\n            \"author\": 18,\n            \"taged_users\": [],\n            \"likes\": [\n                13\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Post Like/Unlike Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/posts/post/{{post_id}}/like/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"{{post_id}}",
+						"like",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post Like Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_id",
+									"value": "{{post_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/posts/like/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"like",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 29 Nov 2021 08:56:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"post_id\": 2,\n    \"message\": \"Post successfully liked\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Comment Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "message",
+							"value": "tr",
+							"type": "text"
+						},
+						{
+							"key": "post",
+							"value": "{{post_id}}",
+							"type": "text"
+						},
+						{
+							"key": "parent",
+							"value": "{{parent_id}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/posts/comment/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"comment",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Comment Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message",
+									"value": "second test comment",
+									"type": "text"
+								},
+								{
+									"key": "post",
+									"value": "{{post_id}}",
+									"type": "text"
+								},
+								{
+									"key": "parent",
+									"value": "{{parent_id}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/posts/comment/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"comment",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 29 Nov 2021 13:23:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "963"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 17,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"post_detail\": {\n        \"id\": 18,\n        \"likes_count\": 0,\n        \"comments_count\": 8,\n        \"author_detail\": {\n            \"id\": 13,\n            \"username\": \"test\",\n            \"email\": \"test@test.com\",\n            \"phone_number\": null,\n            \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n            \"posts_count\": 2,\n            \"following_count\": 1,\n            \"followers_count\": 0\n        },\n        \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n        \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n        \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n        \"caption\": \"frdgd\",\n        \"location\": \"fds\",\n        \"author\": 13,\n        \"taged_users\": [\n            1,\n            9\n        ],\n        \"likes\": []\n    },\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"created_time\": \"2021-11-29T16:53:56.698855+03:30\",\n    \"updated_time\": \"2021-11-29T16:53:56.699112+03:30\",\n    \"message\": \"second test comment\",\n    \"author\": 1,\n    \"post\": \"18\",\n    \"parent\": null,\n    \"likes\": []\n}"
 				}
 			]
 		},
 		{
 			"name": "Delete Comment Request",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [
 					{
@@ -1983,35 +2320,64 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/delete-comment/9",
-					"protocol": "http",
+					"raw": "{{base_url}}/posts/comment/{{comment_id}}/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"posts",
-						"delete-comment",
-						"9"
+						"comment",
+						"{{comment_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Comments list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/posts/comment/?post_id=18",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"comment",
+						""
 					],
 					"query": [
 						{
-							"key": "Au",
-							"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-							"disabled": true
+							"key": "post_id",
+							"value": "18"
 						}
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete Comment Request",
+					"name": "Post Comments list Request",
 					"originalRequest": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
@@ -2020,7 +2386,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/delete-comment/9",
+							"raw": "http://127.0.0.1:8000/api/v1/posts/comment/?post_id=18",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2031,131 +2397,26 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"posts",
-								"delete-comment",
-								"9"
+								"comment",
+								""
 							],
 							"query": [
 								{
-									"key": "Au",
-									"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-									"disabled": true
+									"key": "post_id",
+									"value": "18"
 								}
 							]
 						}
 					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:33:34 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "DELETE, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "42"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"success\": \"Comment successfully deleted\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Post Likes Request",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/12/likes",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"posts",
-						"12",
-						"likes"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Post Likes Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/12/likes",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"posts",
-								"12",
-								"likes"
-							]
-						}
-					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:35:24 GMT"
+							"value": "Tue, 30 Nov 2021 08:35:52 GMT"
 						},
 						{
 							"key": "Server",
@@ -2179,7 +2440,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "41"
+							"value": "8668"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -2191,53 +2452,46 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"likes\": [\n        \"amin\",\n        \"mahdi\",\n        \"ali geramand\"\n    ]\n}"
+					"body": "{\n    \"count\": 9,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T15:45:42.602519+03:30\",\n            \"updated_time\": \"2021-11-29T15:45:42.602559+03:30\",\n            \"message\": \"first test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T15:55:26.519051+03:30\",\n            \"updated_time\": \"2021-11-29T15:55:26.519085+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 10,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:28:24.305386+03:30\",\n            \"updated_time\": \"2021-11-29T16:28:24.305422+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:36:40.574208+03:30\",\n            \"updated_time\": \"2021-11-29T16:36:40.574246+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:37:54.155622+03:30\",\n            \"updated_time\": \"2021-11-29T16:37:54.155656+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:50:36.531771+03:30\",\n            \"updated_time\": \"2021-11-29T16:50:36.531808+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 17,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 2,\n            \"created_time\": \"2021-11-29T16:53:56.698855+03:30\",\n            \"updated_time\": \"2021-11-29T16:53:56.699112+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 23,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-30T10:22:51.568067+03:30\",\n            \"updated_time\": \"2021-11-30T10:22:51.568100+03:30\",\n            \"message\": \"tr\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": 17,\n            \"likes\": []\n        },\n        {\n            \"id\": 24,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-30T10:23:59.805188+03:30\",\n            \"updated_time\": \"2021-11-30T10:23:59.805219+03:30\",\n            \"message\": \"tr\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": 17,\n            \"likes\": []\n        }\n    ]\n}"
 				}
 			]
 		},
 		{
-			"name": "Post Comments Request",
+			"name": "Comment Detail Request",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/posts/12/comments",
-					"protocol": "http",
+					"raw": "{{base_url}}/posts/comment/{{comment_id}}/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"posts",
-						"12",
-						"comments"
+						"comment",
+						"{{comment_id}}",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Post Comments Request",
+					"name": "Comment Detail Request",
 					"originalRequest": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 6e858267c1c8bfde7e8f45a82e8e9d457288fdfa",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/posts/12/comments",
+							"raw": "http://127.0.0.1:8000/api/v1/posts/comment/{{comment_id}}/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2248,9 +2502,11 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"v1",
 								"posts",
-								"12",
-								"comments"
+								"comment",
+								"{{comment_id}}",
+								""
 							]
 						}
 					},
@@ -2260,7 +2516,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 20 Sep 2021 18:37:55 GMT"
+							"value": "Mon, 29 Nov 2021 14:17:47 GMT"
 						},
 						{
 							"key": "Server",
@@ -2276,7 +2532,7 @@
 						},
 						{
 							"key": "Allow",
-							"value": "GET, POST, HEAD, OPTIONS"
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
 						},
 						{
 							"key": "X-Frame-Options",
@@ -2284,7 +2540,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "156"
+							"value": "961"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -2296,7 +2552,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"comments\": {\n        \"mahdi\": \"mahdi's comment on BLAH 3\",\n        \"ali geramand\": \"This is another sample comment\",\n        \"amin\": \"Believe it or not, I'm commenting on my own post\"\n    }\n}"
+					"body": "{\n    \"id\": 17,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"post_detail\": {\n        \"id\": 18,\n        \"likes_count\": 0,\n        \"comments_count\": 7,\n        \"author_detail\": {\n            \"id\": 13,\n            \"username\": \"test\",\n            \"email\": \"test@test.com\",\n            \"phone_number\": null,\n            \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n            \"posts_count\": 2,\n            \"following_count\": 1,\n            \"followers_count\": 0\n        },\n        \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n        \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n        \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n        \"caption\": \"frdgd\",\n        \"location\": \"fds\",\n        \"author\": 13,\n        \"taged_users\": [\n            1,\n            9\n        ],\n        \"likes\": []\n    },\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"created_time\": \"2021-11-29T16:53:56.698855+03:30\",\n    \"updated_time\": \"2021-11-29T16:53:56.699112+03:30\",\n    \"message\": \"second test comment\",\n    \"author\": 1,\n    \"post\": 18,\n    \"parent\": null,\n    \"likes\": []\n}"
 				}
 			]
 		}

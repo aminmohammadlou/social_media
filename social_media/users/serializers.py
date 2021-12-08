@@ -128,10 +128,10 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         user = authenticate(**attrs)
 
-        if not user:
+        if not user or not user.is_verified:
             raise serializers.ValidationError(
-                'Invalid username or password. Please try again!'
-            )
+                {'error': {'message': 'Invalid username or password. Please try again!',
+                           'code': 400}})
 
         token = self.get_tokens_for_user(user)
         update_last_login(None, user)

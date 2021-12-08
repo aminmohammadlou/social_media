@@ -65,7 +65,8 @@ class PostViewSet(viewsets.ModelViewSet):
             message = 'Post successfully unliked'
         else:
             post.likes.add(user)
-            Notification.objects.create(from_user=user, post=post, action=Notification.ACTION_CHOICES[0][0])
+            Notification.objects.create(from_user=user, post=post, to_user=post.author,
+                                        action=Notification.ACTION_CHOICES[0][0])
             message = 'Post successfully liked'
         return Response(data={'post_id': post.id, 'message': message}, status=status.HTTP_200_OK)
 
@@ -120,10 +121,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         if self.request.data.get('post') is None:
             comment = Comment.objects.get(pk=self.request.data['parent'])
             serializer.save(author=self.request.user, post=comment.post)
-            Notification.objects.create(from_user=self.request.user, comment=comment,
+            Notification.objects.create(from_user=self.request.user, comment=comment, to_user=comment.author,
                                         action=Notification.ACTION_CHOICES[3][0])
 
         else:
             comment = serializer.save(author=self.request.user)
-            Notification.objects.create(from_user=self.request.user, post=comment.post,
+            Notification.objects.create(from_user=self.request.user, post=comment.post, to_user=comment.post.author,
                                         action=Notification.ACTION_CHOICES[3][0])

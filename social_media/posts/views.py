@@ -35,7 +35,7 @@ class PostViewSet(viewsets.ModelViewSet):
         if self.action == 'feed':
             return self.queryset.filter(
                 Q(likes__in=self.request.user.following.all()) | Q(
-                    likes__in=self.request.user.followers.all())).exclude(
+                    comment__author__in=self.request.user.following.all())).exclude(
                 author=self.request.user).distinct()
 
         return self.queryset

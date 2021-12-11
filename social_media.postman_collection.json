@@ -797,7 +797,7 @@
 					"formdata": [
 						{
 							"key": "following_user",
-							"value": "mahdihd",
+							"value": "mahdi",
 							"type": "text"
 						}
 					]
@@ -948,18 +948,11 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/following/",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/{{user_id}}/following/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"{{user_id}}",
 								"following",
@@ -973,7 +966,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 24 Nov 2021 12:47:27 GMT"
+							"value": "Sat, 11 Dec 2021 12:21:20 GMT"
 						},
 						{
 							"key": "Server",
@@ -997,7 +990,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "372"
+							"value": "420"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1009,7 +1002,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 12,\n        \"username\": \"iliyagr\",\n        \"email\": \"mowogi5124@nefacility.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T10:21:14.032497+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 13,\n        \"username\": \"test\",\n        \"email\": \"test@test.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
+					"body": "[\n    {\n        \"id\": 2,\n        \"username\": \"mahdi\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"full_name\": \"\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T11:41:24.972557+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 0,\n        \"followers_count\": 1\n    },\n    {\n        \"id\": 4,\n        \"username\": \"test1\",\n        \"email\": \"test@test.com\",\n        \"full_name\": \"\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:07.865428+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 0,\n        \"followers_count\": 0\n    }\n]"
 				}
 			]
 		},
@@ -1060,18 +1053,11 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/followers/",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/{{user_id}}/followers/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"{{user_id}}",
 								"followers",
@@ -1085,7 +1071,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 24 Nov 2021 12:50:24 GMT"
+							"value": "Sat, 11 Dec 2021 12:29:55 GMT"
 						},
 						{
 							"key": "Server",
@@ -1109,7 +1095,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "364"
+							"value": "644"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1121,7 +1107,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 9,\n        \"username\": \"mahdihd\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-23T12:39:30.620656+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 13,\n        \"username\": \"test\",\n        \"email\": \"test@test.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
+					"body": "[\n    {\n        \"id\": 2,\n        \"username\": \"mahdi\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"full_name\": \"mahdi\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T11:41:24.972557+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 1\n    },\n    {\n        \"id\": 4,\n        \"username\": \"test1\",\n        \"email\": \"test@test.com\",\n        \"full_name\": \"test1\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:07.865428+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 5,\n        \"username\": \"test2\",\n        \"email\": \"test2@test2.com\",\n        \"full_name\": \"test2\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n        \"posts_count\": 2,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
 				}
 			]
 		},
@@ -1172,18 +1158,11 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/users/{{user_id}}/detail/",
-							"protocol": "http",
+							"raw": "{{base_url}}/users/{{user_id}}/detail/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"{{user_id}}",
 								"detail",
@@ -1197,7 +1176,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 24 Nov 2021 13:17:22 GMT"
+							"value": "Sat, 11 Dec 2021 12:31:04 GMT"
 						},
 						{
 							"key": "Server",
@@ -1221,7 +1200,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "192"
+							"value": "243"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1233,7 +1212,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"username\": \"aminml\",\n    \"email\": \"aminmohammadlou99@gmail.com\",\n    \"phone_number\": null,\n    \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n    \"posts_count\": 1,\n    \"following_count\": 2,\n    \"followers_count\": 2\n}"
+					"body": "{\n    \"id\": 1,\n    \"username\": \"aminml\",\n    \"email\": \"aminmohammadlou99@gmail.com\",\n    \"full_name\": \"Amin Mohammadlou\",\n    \"phone_number\": 9387425503,\n    \"avatar\": null,\n    \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n    \"posts_count\": 1,\n    \"following_count\": 2,\n    \"followers_count\": 3\n}"
 				}
 			]
 		},
@@ -1263,13 +1242,13 @@
 					"formdata": [
 						{
 							"key": "caption",
-							"value": "test post 10",
+							"value": "test post 8",
 							"type": "text"
 						},
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/home/user/Pictures/Screenshot from 2021-11-23 15-01-42.png"
+							"src": "/home/amin/Pictures/download.jpeg"
 						},
 						{
 							"key": "location",
@@ -1283,7 +1262,7 @@
 						},
 						{
 							"key": "taged_users",
-							"value": "9",
+							"value": "5",
 							"type": "text"
 						}
 					]
@@ -1317,13 +1296,13 @@
 							"formdata": [
 								{
 									"key": "caption",
-									"value": "test post 10",
+									"value": "test post 8",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/home/user/Pictures/Screenshot from 2021-11-23 15-01-42.png"
+									"src": "/home/amin/Pictures/download.jpeg"
 								},
 								{
 									"key": "location",
@@ -1337,24 +1316,17 @@
 								},
 								{
 									"key": "taged_users",
-									"value": "9",
+									"value": "5",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/posts/post/",
-							"protocol": "http",
+							"raw": "{{base_url}}/posts/post/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"posts",
 								"post",
 								""
@@ -1367,7 +1339,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 29 Nov 2021 10:45:05 GMT"
+							"value": "Sat, 11 Dec 2021 12:33:24 GMT"
 						},
 						{
 							"key": "Server",
@@ -1391,7 +1363,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "539"
+							"value": "580"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1403,7 +1375,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 21,\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"created_time\": \"2021-11-29T14:15:05.633489+03:30\",\n    \"updated_time\": \"2021-11-29T14:15:05.633527+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_p4ykrnC.png\",\n    \"caption\": \"test post 10\",\n    \"location\": \"Tehran\",\n    \"author\": 1,\n    \"taged_users\": [\n        1,\n        9\n    ],\n    \"likes\": []\n}"
+					"body": "{\n    \"id\": 8,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"full_name\": \"Amin Mohammadlou\",\n        \"phone_number\": 9387425503,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n        \"posts_count\": 2,\n        \"following_count\": 2,\n        \"followers_count\": 3\n    },\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"created_time\": \"2021-12-11T16:03:24.120068+03:30\",\n    \"updated_time\": \"2021-12-11T16:03:24.120122+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/download_WDk4TA4.jpeg\",\n    \"caption\": \"test post 8\",\n    \"location\": \"Tehran\",\n    \"is_archive\": false,\n    \"author\": 1,\n    \"taged_users\": [\n        1,\n        5\n    ],\n    \"likes\": []\n}"
 				}
 			]
 		},
@@ -1428,12 +1400,14 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png"
+							"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png",
+							"disabled": true
 						},
 						{
 							"key": "caption",
 							"value": "test post 3",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "location",
@@ -1479,12 +1453,14 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png"
+									"src": "/home/user/Pictures/Screenshot from 2021-11-23 10-09-50.png",
+									"disabled": true
 								},
 								{
 									"key": "caption",
 									"value": "test post 3",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "location",
@@ -1506,18 +1482,11 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/posts/post/{{post_id}}/",
-							"protocol": "http",
+							"raw": "{{base_url}}/posts/post/{{post_id}}/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"posts",
 								"post",
 								"{{post_id}}",
@@ -1531,7 +1500,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Sun, 28 Nov 2021 13:22:50 GMT"
+							"value": "Sat, 11 Dec 2021 12:34:04 GMT"
 						},
 						{
 							"key": "Server",
@@ -1555,7 +1524,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "523"
+							"value": "545"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1567,7 +1536,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 20,\n    \"likes_count\": 0,\n    \"comments_count\": 0,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 14,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"created_time\": \"2021-11-28T14:17:59.154408+03:30\",\n    \"updated_time\": \"2021-11-28T16:52:50.799570+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50_xiJI4k6.png\",\n    \"caption\": \"test post 3\",\n    \"location\": \"this\",\n    \"taged_users\": [\n        1\n    ],\n    \"likes\": []\n}"
+					"body": "{\n    \"id\": 7,\n    \"author_detail\": {\n        \"id\": 5,\n        \"username\": \"test2\",\n        \"email\": \"test2@test2.com\",\n        \"full_name\": \"test2\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n        \"posts_count\": 2,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    \"likes_count\": 0,\n    \"comments_count\": 1,\n    \"created_time\": \"2021-12-11T10:35:18.962454+03:30\",\n    \"updated_time\": \"2021-12-11T16:04:04.289872+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/download_d9G3JBy.jpeg\",\n    \"caption\": \"test post 7\",\n    \"location\": \"this\",\n    \"is_archive\": false,\n    \"author\": 5,\n    \"taged_users\": [],\n    \"likes\": []\n}"
 				}
 			]
 		},
@@ -1659,18 +1628,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/posts/post/{{post_id}}/",
-							"protocol": "http",
+							"raw": "{{base_url}}/posts/post/{{post_id}}/",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"posts",
 								"post",
 								"{{post_id}}",
@@ -1684,7 +1646,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Sun, 28 Nov 2021 14:20:38 GMT"
+							"value": "Sat, 11 Dec 2021 12:34:43 GMT"
 						},
 						{
 							"key": "Server",
@@ -1708,7 +1670,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "818"
+							"value": "545"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1720,7 +1682,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 17,\n    \"likes_count\": 0,\n    \"comments_count\": 2,\n    \"author_detail\": {\n        \"id\": 1,\n        \"username\": \"aminml\",\n        \"email\": \"aminmohammadlou99@gmail.com\",\n        \"phone_number\": null,\n        \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n        \"posts_count\": 13,\n        \"following_count\": 2,\n        \"followers_count\": 2\n    },\n    \"comments\": [\n        {\n            \"id\": 3,\n            \"created_time\": \"2021-11-28T17:10:13.275002+03:30\",\n            \"updated_time\": \"2021-11-28T17:10:13.275058+03:30\",\n            \"message\": \"htrcgfhtfgh\",\n            \"author\": 12,\n            \"post\": 17,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 4,\n            \"created_time\": \"2021-11-28T17:11:26.243296+03:30\",\n            \"updated_time\": \"2021-11-28T17:11:26.243331+03:30\",\n            \"message\": \"utyurxtgdghxf\",\n            \"author\": 13,\n            \"post\": 17,\n            \"parent\": null,\n            \"likes\": []\n        }\n    ],\n    \"created_time\": \"2021-11-28T14:04:09.598826+03:30\",\n    \"updated_time\": \"2021-11-28T14:04:09.599813+03:30\",\n    \"image\": null,\n    \"caption\": \"test post 2\",\n    \"location\": \"malard\",\n    \"taged_users\": [\n        9,\n        12\n    ],\n    \"likes\": []\n}"
+					"body": "{\n    \"id\": 7,\n    \"author_detail\": {\n        \"id\": 5,\n        \"username\": \"test2\",\n        \"email\": \"test2@test2.com\",\n        \"full_name\": \"test2\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n        \"posts_count\": 2,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    \"likes_count\": 0,\n    \"comments_count\": 1,\n    \"created_time\": \"2021-12-11T10:35:18.962454+03:30\",\n    \"updated_time\": \"2021-12-11T16:04:04.289872+03:30\",\n    \"image\": \"http://127.0.0.1:8000/media/post_images/download_d9G3JBy.jpeg\",\n    \"caption\": \"test post 7\",\n    \"location\": \"this\",\n    \"is_archive\": false,\n    \"author\": 5,\n    \"taged_users\": [],\n    \"likes\": []\n}"
 				}
 			]
 		},
@@ -1740,7 +1702,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/posts/post/?user_id=1",
+					"raw": "{{base_url}}/posts/post/?author_id=1&is_archive=False",
 					"host": [
 						"{{base_url}}"
 					],
@@ -1751,8 +1713,12 @@
 					],
 					"query": [
 						{
-							"key": "user_id",
+							"key": "author_id",
 							"value": "1"
+						},
+						{
+							"key": "is_archive",
+							"value": "False"
 						}
 					]
 				}
@@ -1764,26 +1730,23 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/posts/post/?user_id=1",
-							"protocol": "http",
+							"raw": "{{base_url}}/posts/post/?author_id=3&is_archive=False",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"posts",
 								"post",
 								""
 							],
 							"query": [
 								{
-									"key": "user_id",
-									"value": "1"
+									"key": "author_id",
+									"value": "3"
+								},
+								{
+									"key": "is_archive",
+									"value": "False"
 								}
 							]
 						}
@@ -1794,7 +1757,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Tue, 30 Nov 2021 08:41:29 GMT"
+							"value": "Sat, 11 Dec 2021 12:35:37 GMT"
 						},
 						{
 							"key": "Server",
@@ -1818,7 +1781,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "5434"
+							"value": "2346"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1830,7 +1793,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"count\": 14,\n    \"next\": \"http://127.0.0.1:8000/api/v1/posts/post/?page=2&user_id=1\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 8,\n            \"created_time\": \"2021-11-24T16:33:59.275821+03:30\",\n            \"updated_time\": \"2021-11-25T13:32:49.212058+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42.png\",\n            \"caption\": \"blah\",\n            \"location\": \"tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 3,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-25T16:15:39.882101+03:30\",\n            \"updated_time\": \"2021-11-25T16:15:39.882139+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50.png\",\n            \"caption\": \"This is a sample post\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:52:16.897974+03:30\",\n            \"updated_time\": \"2021-11-28T12:52:16.898044+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_fKdzAn6.png\",\n            \"caption\": \"\",\n            \"location\": null,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 8,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:55:34.510085+03:30\",\n            \"updated_time\": \"2021-11-28T12:55:34.510121+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_RdsnRLc.png\",\n            \"caption\": \"test post\",\n            \"location\": null,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:55:48.617368+03:30\",\n            \"updated_time\": \"2021-11-28T12:55:48.617401+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_pudgB7a.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 10,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T12:56:56.394519+03:30\",\n            \"updated_time\": \"2021-11-28T13:06:18.642486+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_JFSsCK4.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:14.500911+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:14.500992+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_OzpF5Kx.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:35.399494+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:35.399531+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_d8NZpdE.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 13,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:22:27.482220+03:30\",\n            \"updated_time\": \"2021-11-28T13:22:27.482256+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_v5jOJEL.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:23:05.868122+03:30\",\n            \"updated_time\": \"2021-11-28T13:23:05.868185+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_Gb6mfco.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        }\n    ]\n}"
+					"body": "{\n    \"count\": 4,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-08T13:06:41.649767+03:30\",\n            \"updated_time\": \"2021-12-08T13:34:20.994037+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                2,\n                3\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 2,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 2,\n            \"comments_count\": 4,\n            \"created_time\": \"2021-12-08T13:39:48.208418+03:30\",\n            \"updated_time\": \"2021-12-08T14:20:05.048658+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone_G3BU84n.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                4,\n                5\n            ],\n            \"likes\": [\n                1,\n                3\n            ]\n        },\n        {\n            \"id\": 4,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:20.552750+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:18.612299+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_WG18Gll.jpeg\",\n            \"caption\": \"test post 4\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                2\n            ]\n        },\n        {\n            \"id\": 5,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:24.407932+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:25.879591+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_dUASfrY.jpeg\",\n            \"caption\": \"test post 5\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                4\n            ]\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -1887,7 +1850,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 02 Dec 2021 13:06:57 GMT"
+							"value": "Sat, 11 Dec 2021 12:37:31 GMT"
 						},
 						{
 							"key": "Server",
@@ -1911,7 +1874,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "5744"
+							"value": "3426"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1923,7 +1886,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"count\": 17,\n    \"next\": \"http://127.0.0.1:8000/api/v1/posts/post/home_page/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 21,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T14:15:05.633489+03:30\",\n            \"updated_time\": \"2021-11-29T14:15:05.633527+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_p4ykrnC.png\",\n            \"caption\": \"test post 10\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 19,\n            \"author_detail\": {\n                \"id\": 13,\n                \"username\": \"test\",\n                \"email\": \"test@test.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T14:15:48.562474+03:30\",\n            \"updated_time\": \"2021-11-28T16:05:36.255315+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_10-09-50_8mOeY9K.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 13,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 18,\n            \"author_detail\": {\n                \"id\": 13,\n                \"username\": \"test\",\n                \"email\": \"test@test.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 9,\n            \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n            \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n            \"caption\": \"frdgd\",\n            \"location\": \"fds\",\n            \"author\": 13,\n            \"taged_users\": [\n                1,\n                9\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 17,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 3,\n            \"comments_count\": 2,\n            \"created_time\": \"2021-11-28T14:04:09.598826+03:30\",\n            \"updated_time\": \"2021-11-28T17:55:25.074207+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-17_10-40-33.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": [\n                9,\n                12,\n                13\n            ]\n        },\n        {\n            \"id\": 16,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T14:03:14.984670+03:30\",\n            \"updated_time\": \"2021-11-28T14:03:14.984709+03:30\",\n            \"image\": null,\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 15,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:55:38.612939+03:30\",\n            \"updated_time\": \"2021-11-28T13:55:38.612977+03:30\",\n            \"image\": null,\n            \"caption\": \"test post 2\",\n            \"location\": \"malard\",\n            \"author\": 1,\n            \"taged_users\": [\n                9,\n                12\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:23:05.868122+03:30\",\n            \"updated_time\": \"2021-11-28T13:23:05.868185+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_Gb6mfco.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 13,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:22:27.482220+03:30\",\n            \"updated_time\": \"2021-11-28T13:22:27.482256+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_v5jOJEL.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:35.399494+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:35.399531+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_d8NZpdE.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-28T13:09:14.500911+03:30\",\n            \"updated_time\": \"2021-11-28T13:09:14.500992+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_OzpF5Kx.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        }\n    ]\n}"
+					"body": "{\n    \"count\": 6,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 5,\n                \"username\": \"test2\",\n                \"email\": \"test2@test2.com\",\n                \"full_name\": \"test2\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 1\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T10:35:18.962454+03:30\",\n            \"updated_time\": \"2021-12-11T16:04:04.289872+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_d9G3JBy.jpeg\",\n            \"caption\": \"test post 7\",\n            \"location\": \"this\",\n            \"is_archive\": false,\n            \"author\": 5,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 6,\n            \"author_detail\": {\n                \"id\": 5,\n                \"username\": \"test2\",\n                \"email\": \"test2@test2.com\",\n                \"full_name\": \"test2\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 1,\n                \"followers_count\": 1\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T10:33:53.136534+03:30\",\n            \"updated_time\": \"2021-12-11T10:33:53.136564+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/images.jpeg\",\n            \"caption\": \"test post 6\",\n            \"location\": null,\n            \"is_archive\": false,\n            \"author\": 5,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 5,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:24.407932+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:25.879591+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_dUASfrY.jpeg\",\n            \"caption\": \"test post 5\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                4\n            ]\n        },\n        {\n            \"id\": 4,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:20.552750+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:18.612299+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_WG18Gll.jpeg\",\n            \"caption\": \"test post 4\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                2\n            ]\n        },\n        {\n            \"id\": 2,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 2,\n            \"comments_count\": 4,\n            \"created_time\": \"2021-12-08T13:39:48.208418+03:30\",\n            \"updated_time\": \"2021-12-08T14:20:05.048658+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone_G3BU84n.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                4,\n                5\n            ],\n            \"likes\": [\n                1,\n                3\n            ]\n        },\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-08T13:06:41.649767+03:30\",\n            \"updated_time\": \"2021-12-08T13:34:20.994037+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                2,\n                3\n            ],\n            \"likes\": []\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2017,6 +1980,210 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 23,\n            \"author_detail\": {\n                \"id\": 18,\n                \"username\": \"test_1\",\n                \"email\": \"bomibe5143@terasd.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-30T14:31:28.254525+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-02T15:15:36.038478+03:30\",\n            \"updated_time\": \"2021-12-02T16:06:05.825605+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Netflix-new-icon.png\",\n            \"caption\": \"hytyhfdgdf\",\n            \"location\": null,\n            \"author\": 18,\n            \"taged_users\": [],\n            \"likes\": [\n                9\n            ]\n        },\n        {\n            \"id\": 22,\n            \"author_detail\": {\n                \"id\": 18,\n                \"username\": \"test_1\",\n                \"email\": \"bomibe5143@terasd.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-11-30T14:31:28.254525+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-01T15:24:54.217062+03:30\",\n            \"updated_time\": \"2021-12-02T16:06:58.894669+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/photo-1453728013993-6d66e9c9123a.jpeg\",\n            \"caption\": \"hfxhdf\",\n            \"location\": null,\n            \"author\": 18,\n            \"taged_users\": [],\n            \"likes\": [\n                13\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Archived Posts list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/?author_id=1&is_archive=True",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						""
+					],
+					"query": [
+						{
+							"key": "author_id",
+							"value": "1"
+						},
+						{
+							"key": "is_archive",
+							"value": "True"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Archived Posts list Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/post/?author_id=1&is_archive=True",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"post",
+								""
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "1"
+								},
+								{
+									"key": "is_archive",
+									"value": "True"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Dec 2021 11:57:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "620"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 1,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 3,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n                \"posts_count\": 1,\n                \"following_count\": 2,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:26:32.525209+03:30\",\n            \"updated_time\": \"2021-12-11T15:27:33.510237+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download.jpeg\",\n            \"caption\": \"test post 3\",\n            \"location\": \"Tehran\",\n            \"is_archive\": true,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Saved Posts list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/collection/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"collection",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Saved Posts list Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/post/collection/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"post",
+								"collection",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Dec 2021 12:09:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2276"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 4,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 5,\n                \"username\": \"test2\",\n                \"email\": \"test2@test2.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T10:35:18.962454+03:30\",\n            \"updated_time\": \"2021-12-11T10:35:18.962487+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_d9G3JBy.jpeg\",\n            \"caption\": \"test post 7\",\n            \"location\": null,\n            \"is_archive\": false,\n            \"author\": 5,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 6,\n            \"author_detail\": {\n                \"id\": 5,\n                \"username\": \"test2\",\n                \"email\": \"test2@test2.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n                \"posts_count\": 2,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T10:33:53.136534+03:30\",\n            \"updated_time\": \"2021-12-11T10:33:53.136564+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/images.jpeg\",\n            \"caption\": \"test post 6\",\n            \"location\": null,\n            \"is_archive\": false,\n            \"author\": 5,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 2,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 2,\n            \"comments_count\": 4,\n            \"created_time\": \"2021-12-08T13:39:48.208418+03:30\",\n            \"updated_time\": \"2021-12-08T14:20:05.048658+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone_G3BU84n.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                4,\n                5\n            ],\n            \"likes\": [\n                1,\n                3\n            ]\n        },\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-08T13:06:41.649767+03:30\",\n            \"updated_time\": \"2021-12-08T13:34:20.994037+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                2,\n                3\n            ],\n            \"likes\": []\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2143,6 +2310,101 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"post_id\": 2,\n    \"message\": \"Post successfully liked\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Save/Remove Post to/from user collection",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/{{post_id}}/collect/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"{{post_id}}",
+						"collect",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Save/Remove Post to/from user collection",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/post/{{post_id}}/collect/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"post",
+								"{{post_id}}",
+								"collect",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Dec 2021 11:50:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Post successfully added to your collection\",\n    \"code\": \"200\"\n}"
 				}
 			]
 		},

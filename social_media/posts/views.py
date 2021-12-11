@@ -25,17 +25,18 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['author_id']
+    filterset_fields = ['author_id', 'is_archive']
     ordering = ['pk']
 
     def get_queryset(self):
         if self.action == 'home_page':
-            return self.queryset.filter(Q(author=self.request.user) | Q(author__in=self.request.user.following.all()))
+            return self.queryset.filter(Q(author=self.request.user) | Q(author__in=self.request.user.following.all()),
+                                        is_archive=False)
 
         if self.action == 'feed':
             return self.queryset.filter(
                 Q(likes__in=self.request.user.following.all()) | Q(
-                    comment__author__in=self.request.user.following.all())).exclude(
+                    comment__author__in=self.request.user.following.all()), is_archive=False).exclude(
                 author=self.request.user).distinct()
 
         return self.queryset

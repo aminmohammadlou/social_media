@@ -5,10 +5,11 @@ from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'caption', 'author', 'location', 'created_time', 'updated_time', 'image')
+    list_display = ('id', 'caption', 'author', 'location', 'created_time', 'updated_time', 'image', 'is_archive')
 
     ordering = ['created_time']
     search_fields = ['author__username', 'location']
+    list_filter = ['is_archive']
     raw_id_fields = ['taged_users', 'likes']
     
 

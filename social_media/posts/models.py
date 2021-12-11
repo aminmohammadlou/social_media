@@ -14,7 +14,7 @@ class Post(BaseModel):
     taged_users = models.ManyToManyField(User, verbose_name=_('taged users'), blank=True,
                                          related_name='taged_users')
     location = models.CharField(_('location'), max_length=30, blank=True, null=True)
-    likes = models.ManyToManyField(User, verbose_name=_('likes'), blank=True, related_name="post_likers")
+    likes = models.ManyToManyField(User, verbose_name=_('likes'), blank=True, related_name="likes_post")
     is_archive = models.BooleanField(_('is archive'), default=False)
 
     class Meta:

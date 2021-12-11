@@ -1687,6 +1687,109 @@
 			]
 		},
 		{
+			"name": "Post Likes list Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/postlikes/?post_id={{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"postlikes",
+						""
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "{{post_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post Likes list Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/postlikes/?post_id={{post_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"postlikes",
+								""
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "{{post_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Dec 2021 13:28:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "191"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"username\": \"aminml\",\n            \"full_name\": \"Amin Mohammadlou\",\n            \"avatar\": null\n        },\n        {\n            \"id\": 3,\n            \"username\": \"iliyagr\",\n            \"full_name\": \"iliyagr\",\n            \"avatar\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
 			"name": "Posts list Request",
 			"request": {
 				"auth": {

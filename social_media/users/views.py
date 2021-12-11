@@ -9,7 +9,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .permissions import IsOwnerOrFollower
 from .serializers import (RegistrationSerializer, ForgetPasswordSerializer, SetPasswordSerializer, LoginSerializer,
-                          ChangePasswordSerializer, UserSerializer, VerifySerializer, FollowSerializer)
+                          ChangePasswordSerializer, UserSerializer, UserMinSerializer, VerifySerializer,
+                          FollowSerializer)
 
 User = get_user_model()
 
@@ -146,3 +147,12 @@ class UserDetailAPIView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
+
+
+class PostLikeListAPIView(generics.ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserMinSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(likes_post=self.request.query_params['post_id'])

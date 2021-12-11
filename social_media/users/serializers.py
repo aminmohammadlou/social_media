@@ -235,3 +235,15 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'avatar', 'created_time', 'posts_count',
                   'following_count', 'followers_count']
+
+
+class UserMinSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_full_name(user):
+        return user.get_full_name()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'full_name', 'avatar']

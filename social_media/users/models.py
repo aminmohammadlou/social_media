@@ -90,4 +90,6 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         Return the first_name plus the last_name, with a space in between.
         """
         full_name = '{} {}'.format(self.first_name, self.last_name)
+        if full_name == ' ':
+            return self.username
         return full_name.strip()

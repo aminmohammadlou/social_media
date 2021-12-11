@@ -1242,7 +1242,7 @@
 					"formdata": [
 						{
 							"key": "caption",
-							"value": "test post 8",
+							"value": "test post 9",
 							"type": "text"
 						},
 						{
@@ -1258,12 +1258,14 @@
 						{
 							"key": "taged_users",
 							"value": "1",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "taged_users",
 							"value": "5",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
@@ -2721,7 +2723,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/posts/comment/?post_id=18",
+					"raw": "{{base_url}}/posts/comment/?post_id={{post_id}}",
 					"host": [
 						"{{base_url}}"
 					],
@@ -2733,7 +2735,7 @@
 					"query": [
 						{
 							"key": "post_id",
-							"value": "18"
+							"value": "{{post_id}}"
 						}
 					]
 				}
@@ -2818,6 +2820,101 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"count\": 9,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 7,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T15:45:42.602519+03:30\",\n            \"updated_time\": \"2021-11-29T15:45:42.602559+03:30\",\n            \"message\": \"first test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T15:55:26.519051+03:30\",\n            \"updated_time\": \"2021-11-29T15:55:26.519085+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 10,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:28:24.305386+03:30\",\n            \"updated_time\": \"2021-11-29T16:28:24.305422+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 11,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:36:40.574208+03:30\",\n            \"updated_time\": \"2021-11-29T16:36:40.574246+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 12,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:37:54.155622+03:30\",\n            \"updated_time\": \"2021-11-29T16:37:54.155656+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-29T16:50:36.531771+03:30\",\n            \"updated_time\": \"2021-11-29T16:50:36.531808+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 17,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 2,\n            \"created_time\": \"2021-11-29T16:53:56.698855+03:30\",\n            \"updated_time\": \"2021-11-29T16:53:56.699112+03:30\",\n            \"message\": \"second test comment\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": null,\n            \"likes\": []\n        },\n        {\n            \"id\": 23,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-30T10:22:51.568067+03:30\",\n            \"updated_time\": \"2021-11-30T10:22:51.568100+03:30\",\n            \"message\": \"tr\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": 17,\n            \"likes\": []\n        },\n        {\n            \"id\": 24,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"phone_number\": null,\n                \"created_time\": \"2021-11-22T16:40:59.609533+03:30\",\n                \"posts_count\": 14,\n                \"following_count\": 2,\n                \"followers_count\": 2\n            },\n            \"post_detail\": {\n                \"id\": 18,\n                \"author_detail\": {\n                    \"id\": 13,\n                    \"username\": \"test\",\n                    \"email\": \"test@test.com\",\n                    \"phone_number\": null,\n                    \"created_time\": \"2021-11-24T15:10:09.543079+03:30\",\n                    \"posts_count\": 2,\n                    \"following_count\": 1,\n                    \"followers_count\": 0\n                },\n                \"likes_count\": 0,\n                \"comments_count\": 9,\n                \"created_time\": \"2021-11-28T14:14:26.625122+03:30\",\n                \"updated_time\": \"2021-11-28T14:14:26.625226+03:30\",\n                \"image\": \"http://127.0.0.1:8000/media/post_images/Screenshot_from_2021-11-23_15-01-42_McK8UWZ.png\",\n                \"caption\": \"frdgd\",\n                \"location\": \"fds\",\n                \"author\": 13,\n                \"taged_users\": [\n                    1,\n                    9\n                ],\n                \"likes\": []\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-11-30T10:23:59.805188+03:30\",\n            \"updated_time\": \"2021-11-30T10:23:59.805219+03:30\",\n            \"message\": \"tr\",\n            \"author\": 1,\n            \"post\": 18,\n            \"parent\": 17,\n            \"likes\": []\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Comment Like/Unlike Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/comment/{{comment_id}}/like/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"comment",
+						"{{comment_id}}",
+						"like",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Comment Like/Unlike Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/comment/{{comment_id}}/like/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"comment",
+								"{{comment_id}}",
+								"like",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Dec 2021 14:16:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"comment_id\": 3,\n    \"message\": \"Comment successfully liked\"\n}"
 				}
 			]
 		},

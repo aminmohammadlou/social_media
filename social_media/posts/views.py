@@ -13,7 +13,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from notifications.models import Notification
 
 from .models import Post, SavedPost, Comment
-from .permissions import get_post_access_list, get_comment_access_list
 from .serializers import PostSerializer, CommentSerializer
 
 User = get_user_model()
@@ -139,13 +138,9 @@ class CommentViewSet(viewsets.ModelViewSet):
     throttle_scope = 'comments'
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-
-    def get_queryset(self):
-        if self.request.method == 'GET' and self.request.query_params.get('post_id'):
-            return self.queryset.filter(post_id=self.request.query_params['post_id'])
-
-        access_list = get_comment_access_list(self.request.user)
-        return self.queryset.filter(pk__in=access_list)
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['post_id']
+    ordering = ['created_time']
 
     def perform_create(self, serializer):
         if self.request.data.get('post') is None and self.request.data.get('parent') is None:
@@ -164,3 +159,18 @@ class CommentViewSet(viewsets.ModelViewSet):
             comment = serializer.save(author=self.request.user)
             Notification.objects.create(from_user=self.request.user, post=comment.post, to_user=comment.post.author,
                                         action=Notification.ACTION_CHOICES[3][0])
+
+    @action(methods=['post'], detail=True)
+    def like(self, request, *args, **kwargs):
+        user = request.user
+        comment = self.get_object()
+        if user in comment.likes.all():
+            comment.likes.remove(user)
+
+            message = 'Comment successfully unliked'
+        else:
+            comment.likes.add(user)
+            Notification.objects.get_or_create(from_user=user, comment=comment, to_user=comment.author,
+                                               action=Notification.ACTION_CHOICES[0][0])
+            message = 'Comment successfully liked'
+        return Response(data={'comment_id': comment.id, 'message': message}, status=status.HTTP_200_OK)

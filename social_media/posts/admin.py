@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Comment
+from .models import Post, SavedPost, Comment
 
 
 @admin.register(Post)
@@ -11,6 +11,14 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ['author__username', 'location']
     list_filter = ['is_archive']
     raw_id_fields = ['taged_users', 'likes']
+
+
+@admin.register(SavedPost)
+class SavedPostAdmin(admin.ModelAdmin):
+    list_display = ('id', 'post', 'user')
+
+    ordering = ['created_time']
+    raw_id_fields = ['post', 'user']
     
 
 @admin.register(Comment)

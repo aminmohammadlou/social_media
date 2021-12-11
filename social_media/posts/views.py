@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
 from rest_framework import status, viewsets, filters
@@ -11,7 +12,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from notifications.models import Notification
 
-from .models import Post, Comment
+from .models import Post, SavedPost, Comment
 from .permissions import get_post_access_list, get_comment_access_list
 from .serializers import PostSerializer, CommentSerializer
 
@@ -38,6 +39,9 @@ class PostViewSet(viewsets.ModelViewSet):
                 Q(likes__in=self.request.user.following.all()) | Q(
                     comment__author__in=self.request.user.following.all()), is_archive=False).exclude(
                 author=self.request.user).distinct()
+
+        if self.action == 'collection':
+            return self.queryset.filter(savedpost__user=self.request.user)
 
         return self.queryset
 
@@ -86,6 +90,37 @@ class PostViewSet(viewsets.ModelViewSet):
 
     @action(methods=['get'], detail=False)
     def feed(self, request, *args, **kwargs):
+        self.ordering = ['-created_time']
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['post'], detail=True)
+    def collect(self, request, *args, **kwargs):
+        post = self.get_object()
+        user = self.request.user
+        try:
+            SavedPost.objects.get(post=post, user=user).delete()
+            data = {
+                'message': 'Post successfully removed from your collection',
+                'code': "200"
+            }
+        except ObjectDoesNotExist:
+            SavedPost.objects.create(post=post, user=user)
+            data = {
+                'message': 'Post successfully added to your collection',
+                'code': "200"
+            }
+        return Response(data=data)
+
+    @action(methods=['get'], detail=False)
+    def collection(self, request, *args, **kwargs):
         self.ordering = ['-created_time']
         queryset = self.filter_queryset(self.get_queryset())
 

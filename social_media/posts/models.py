@@ -25,6 +25,15 @@ class Post(BaseModel):
         return 'id: {}'.format(self.pk)
 
 
+class SavedPost(BaseModel):
+    post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.PROTECT)
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name = _('saved post')
+        verbose_name_plural = _('saved posts')
+
+
 class Comment(BaseModel):
     author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.PROTECT)
     post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.PROTECT, blank=True, null=True)

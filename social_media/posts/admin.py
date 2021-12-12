@@ -18,6 +18,7 @@ class SavedPostAdmin(admin.ModelAdmin):
     list_display = ('id', 'post', 'user')
 
     ordering = ['created_time']
+    search_fields = ['user__username', 'post__id']
     raw_id_fields = ['post', 'user']
     
 

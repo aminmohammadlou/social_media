@@ -26,10 +26,15 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['author_id', 'is_archive']
+    filterset_fields = ['author_id']
     ordering = ['pk']
 
     def get_queryset(self):
+        filter_params = {
+            'list': {'is_archive': False},
+            'collection': {'savedpost__user': self.request.user}
+        }.get(self.action, dict())
+
         if self.action == 'home_page':
             return self.queryset.filter(Q(author=self.request.user) | Q(author__in=self.request.user.following.all()),
                                         is_archive=False)
@@ -40,10 +45,7 @@ class PostViewSet(viewsets.ModelViewSet):
                     comment__author__in=self.request.user.following.all()), is_archive=False).exclude(
                 author=self.request.user).distinct()
 
-        if self.action == 'collection':
-            return self.queryset.filter(savedpost__user=self.request.user)
-
-        return self.queryset
+        return self.queryset.filter(**filter_params)
 
     def get_permissions(self):
         if self.action == 'partial_update' or self.action == 'destroy':
@@ -91,32 +93,19 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(methods=['get'], detail=False)
     def home_page(self, request, *args, **kwargs):
         self.ordering = ['-created_time']
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return self.list(request, *args, **kwargs)
 
     @action(methods=['get'], detail=False)
     def feed(self, request, *args, **kwargs):
         self.ordering = ['-created_time']
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return self.list(request, *args, **kwargs)
 
     @action(methods=['post'], detail=True)
     def collect(self, request, *args, **kwargs):
         post = self.get_object()
+        if post.is_archive is True:
+            raise ValidationError({'message': 'Post is archived! You cant add it to your collection',
+                                   'code': 400})
         user = self.request.user
         try:
             SavedPost.objects.get(post=post, user=user).delete()
@@ -135,15 +124,7 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(methods=['get'], detail=False)
     def collection(self, request, *args, **kwargs):
         self.ordering = ['-created_time']
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return self.list(request, *args, **kwargs)
 
 
 class CommentViewSet(viewsets.ModelViewSet):

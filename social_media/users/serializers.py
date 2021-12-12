@@ -167,8 +167,8 @@ class FollowSerializer(serializers.Serializer):
             else:
                 follower.following.add(following_user)
                 following_user.followers.add(follower)
-                Notification.objects.create(from_user=follower, to_user=following_user,
-                                            action=Notification.ACTION_CHOICES[1][0])
+                Notification.objects.update_or_create(from_user=follower, to_user=following_user,
+                                                      action=Notification.ACTION_CHOICES[1][0])
                 message = 'User successfully followed'
 
             data = {

@@ -14,6 +14,7 @@ from notifications.models import Notification
 
 from .models import Post, SavedPost, Comment
 from .serializers import PostSerializer, CommentSerializer
+from .permissions import IsOwner
 
 User = get_user_model()
 
@@ -44,6 +45,12 @@ class PostViewSet(viewsets.ModelViewSet):
 
         return self.queryset
 
+    def get_permissions(self):
+        if self.action == 'partial_update' or self.action == 'destroy':
+            return [IsOwner()]
+
+        return super(PostViewSet, self).get_permissions()
+
     def perform_create(self, serializer):
         post = serializer.save(author=self.request.user)
         if self.request.data.get('taged_users'):
@@ -52,11 +59,18 @@ class PostViewSet(viewsets.ModelViewSet):
                                             action=Notification.ACTION_CHOICES[2][0])
 
     def perform_update(self, serializer):
+        taged_users = list(self.get_object().taged_users.all().values_list('pk', flat=True))
         super(PostViewSet, self).perform_update(serializer)
         post = self.get_object()
         if self.request.data.get('taged_users'):
-            for taged_user in serializer['taged_users'].value:
-                Notification.objects.get_or_create(from_user=self.request.user, post=post, to_user_id=int(taged_user),
+            for taged_user_id in taged_users:
+                if taged_user_id not in serializer['taged_users'].value:
+                    Notification.objects.get(from_user=self.request.user, post=post, to_user_id=taged_user_id,
+                                             action=Notification.ACTION_CHOICES[2][0]).delete()
+
+            for taged_user_id in serializer['taged_users'].value:
+                Notification.objects.get_or_create(from_user=self.request.user, post=post,
+                                                   to_user_id=int(taged_user_id),
                                                    action=Notification.ACTION_CHOICES[2][0])
 
     @action(methods=['post'], detail=True)
@@ -69,8 +83,8 @@ class PostViewSet(viewsets.ModelViewSet):
             message = 'Post successfully unliked'
         else:
             post.likes.add(user)
-            Notification.objects.create(from_user=user, post=post, to_user=post.author,
-                                        action=Notification.ACTION_CHOICES[0][0])
+            Notification.objects.update_or_create(from_user=user, post=post, to_user=post.author,
+                                                  action=Notification.ACTION_CHOICES[0][0])
             message = 'Post successfully liked'
         return Response(data={'post_id': post.id, 'message': message}, status=status.HTTP_200_OK)
 
@@ -170,7 +184,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             message = 'Comment successfully unliked'
         else:
             comment.likes.add(user)
-            Notification.objects.get_or_create(from_user=user, comment=comment, to_user=comment.author,
-                                               action=Notification.ACTION_CHOICES[0][0])
+            Notification.objects.update_or_create(from_user=user, comment=comment, to_user=comment.author,
+                                                  action=Notification.ACTION_CHOICES[0][0])
             message = 'Comment successfully liked'
         return Response(data={'comment_id': comment.id, 'message': message}, status=status.HTTP_200_OK)

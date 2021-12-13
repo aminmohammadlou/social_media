@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
-from rest_framework import status, viewsets, filters
+from rest_framework import status, viewsets, filters, generics
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
@@ -169,3 +169,17 @@ class CommentViewSet(viewsets.ModelViewSet):
                                                   action=Notification.ACTION_CHOICES[0][0])
             message = 'Comment successfully liked'
         return Response(data={'comment_id': comment.id, 'message': message}, status=status.HTTP_200_OK)
+
+
+class SearchHashtagAPIView(generics.ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=caption', '=comment__message']
+
+    def get_queryset(self):
+        if self.request.query_params.get('search'):
+            return self.queryset
+        return Post.objects.none()

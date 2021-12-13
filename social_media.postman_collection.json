@@ -3207,6 +3207,84 @@
 					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"username\": \"aminml\",\n            \"full_name\": \"Amin Mohammadlou\",\n            \"avatar\": null\n        },\n        {\n            \"id\": 4,\n            \"username\": \"test1\",\n            \"full_name\": \"Amir hosein\",\n            \"avatar\": null\n        }\n    ]\n}"
 				}
 			]
+		},
+		{
+			"name": "Search hashtag Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": [
+				{
+					"name": "Search hashtag Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/hashtag/search/?search=%23azadi",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"hashtag",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "#azadi"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 13 Dec 2021 12:11:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1186"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 5,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T17:45:51.871798+03:30\",\n            \"updated_time\": \"2021-12-11T17:45:51.871828+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_Vy7Ovf5.jpeg\",\n            \"caption\": \"test post 9\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n                \"posts_count\": 7,\n                \"following_count\": 2,\n                \"followers_count\": 3\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-13T15:26:32.630097+03:30\",\n            \"updated_time\": \"2021-12-13T15:26:32.630129+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_QW7OIxt.jpeg\",\n            \"caption\": \"#azadi\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        }\n    ]\n}"
+				}
+			]
 		}
 	]
 }

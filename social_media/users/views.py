@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
-from rest_framework import generics, status
+from rest_framework import generics, status, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -156,3 +156,17 @@ class PostLikeListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return User.objects.filter(likes_post=self.request.query_params['post_id'])
+
+
+class UserSearchAPIView(generics.ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserMinSerializer
+    queryset = User.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'first_name', 'last_name']
+
+    def get_queryset(self):
+        if self.request.query_params.get('search'):
+            return self.queryset
+        return User.objects.none()

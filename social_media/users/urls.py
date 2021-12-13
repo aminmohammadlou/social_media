@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (RegisterAPIView, VerifyAPIView, ForgetPasswordAPIView, SetPasswordAPIView, LoginAPIView,
                     FollowAPIView, ChangePasswordAPIVIEW, FollowingListAPIView, FollowerListAPIView, UserDetailAPIView,
-                    PostLikeListAPIView)
+                    PostLikeListAPIView, UserSearchAPIView)
 
 app_name = 'users'
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path('<int:pk>/followers/', FollowerListAPIView.as_view(), name='followers'),
     path('<int:pk>/detail/', UserDetailAPIView.as_view(), name='user_detail'),
     path('postlikes/', PostLikeListAPIView.as_view(), name='post_likes'),
+    path('search/', UserSearchAPIView.as_view(), name='search'),
 ]

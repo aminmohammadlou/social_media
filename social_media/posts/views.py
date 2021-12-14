@@ -175,9 +175,10 @@ class SearchPostAPIView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
-    filter_backends = [filters.SearchFilter]
+    queryset = Post.objects.filter(is_archive=False)
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['=caption', '=comment__message']
+    ordering = ['-created_time']
 
     def get_queryset(self):
         if self.request.query_params.get('search'):

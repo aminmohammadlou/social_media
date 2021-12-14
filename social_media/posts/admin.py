@@ -5,7 +5,7 @@ from .models import Post, SavedPost, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'caption', 'author', 'location', 'created_time', 'updated_time', 'image', 'is_archive')
+    list_display = ('id', 'author', 'location', 'created_time', 'updated_time', 'is_archive', 'image')
 
     ordering = ['created_time']
     search_fields = ['author__username', 'location']
@@ -24,7 +24,7 @@ class SavedPostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'message', 'author', 'post', 'parent', 'created_time', 'updated_time')
+    list_display = ('id', 'author', 'post', 'parent', 'created_time', 'updated_time')
 
     ordering = ['created_time']
     search_fields = ['author__username', 'post__id', 'parent__id']

@@ -2,7 +2,7 @@ from django.urls import path
 
 from rest_framework import routers
 
-from .views import PostViewSet, CommentViewSet, SearchHashtagAPIView
+from .views import PostViewSet, CommentViewSet, SearchPostAPIView
 
 app_name = 'posts'
 
@@ -10,5 +10,5 @@ router = routers.SimpleRouter()
 router.register(r'post', PostViewSet)
 router.register(r'comment', CommentViewSet)
 urlpatterns = [
-    path('hashtag/search/', SearchHashtagAPIView.as_view(), name='search_hashtag')
+    path('post/search/', SearchPostAPIView.as_view(), name='search_hashtag')
               ] + router.urls

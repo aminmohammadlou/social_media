@@ -3209,26 +3209,53 @@
 			]
 		},
 		{
-			"name": "Search hashtag Request",
+			"name": "Search Post Request",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "{{base_url}}/posts/post/search/?search=%23azadi",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "#azadi"
+						}
+					]
+				}
 			},
 			"response": [
 				{
-					"name": "Search hashtag Request",
+					"name": "Search Post Request",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/posts/hashtag/search/?search=%23azadi",
+							"raw": "{{base_url}}/posts/post/search/?search=%23azadi",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"posts",
-								"hashtag",
+								"post",
 								"search",
 								""
 							],
@@ -3246,7 +3273,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Mon, 13 Dec 2021 12:11:44 GMT"
+							"value": "Tue, 14 Dec 2021 06:58:44 GMT"
 						},
 						{
 							"key": "Server",

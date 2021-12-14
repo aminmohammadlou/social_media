@@ -171,7 +171,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(data={'comment_id': comment.id, 'message': message}, status=status.HTTP_200_OK)
 
 
-class SearchHashtagAPIView(generics.ListAPIView):
+class SearchPostAPIView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
@@ -181,5 +181,8 @@ class SearchHashtagAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         if self.request.query_params.get('search'):
+            if self.request.query_params.get('search').find('#') == -1:
+                self.search_fields = ['location']
+
             return self.queryset
         return Post.objects.none()

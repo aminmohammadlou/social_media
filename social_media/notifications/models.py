@@ -15,10 +15,10 @@ class Notification(BaseModel):
     COMMENT = 4
 
     from_user = models.ForeignKey(User, verbose_name=_('from_user'), on_delete=models.PROTECT, related_name='from_user')
-    post = models.ForeignKey(Post, verbose_name=_('post'), blank=True, null=True, on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, verbose_name=_('post'), blank=True, null=True, on_delete=models.CASCADE)
     to_user = models.ForeignKey(User, verbose_name=_('to_user'), on_delete=models.PROTECT, db_index=True,
                                 related_name='to_user')
-    comment = models.ForeignKey(Comment, verbose_name=_('comment'), blank=True, null=True, on_delete=models.PROTECT,
+    comment = models.ForeignKey(Comment, verbose_name=_('comment'), blank=True, null=True, on_delete=models.CASCADE,
                                 related_name='comment')
     ACTION_CHOICES = (
         (LIKE, _('Like')),

@@ -625,6 +625,209 @@
 			]
 		},
 		{
+			"name": "User Edit Profile Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "iliyagr",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ciros10888@swsguide.com",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "09369241340",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "iliya",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "geramand",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "1999-5-7",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/home/amin/Pictures/Screenshot from 2021-12-14 16-03-21.png"
+						},
+						{
+							"key": "bio",
+							"value": "hell yeah",
+							"type": "text"
+						},
+						{
+							"key": "other_social_medias",
+							"value": "{\n    \"telegram\": \"test\",\n    \"whatsapp\": \"test2\"\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}/update/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"update",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Edit Profile Request",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "iliyagr",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ciros10888@swsguide.com",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "09369241340",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "iliya",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "geramand",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-5-7",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/amin/Pictures/Screenshot from 2021-12-14 16-03-21.png"
+								},
+								{
+									"key": "bio",
+									"value": "hell yeah",
+									"type": "text"
+								},
+								{
+									"key": "other_social_medias",
+									"value": "{\n    \"telegram\": \"test\",\n    \"whatsapp\": \"test2\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/update/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}",
+								"update",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 07:23:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "PUT, PATCH, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "440"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"username\": \"iliyagr\",\n    \"email\": \"ciros10888@swsguide.com\",\n    \"full_name\": \"iliya geramand\",\n    \"phone_number\": 9369241340,\n    \"avatar\": \"http://127.0.0.1:8000/media/profile_images/Screenshot_from_2021-12-14_16-03-21_etMmDBQ.png\",\n    \"bio\": \"hell yeah\",\n    \"gender\": 0,\n    \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n    \"posts_count\": 4,\n    \"following_count\": 1,\n    \"followers_count\": 0,\n    \"birthday\": \"1999-05-07\",\n    \"other_social_medias\": {\n        \"telegram\": \"test\",\n        \"whatsapp\": \"test2\"\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "User Change Password Request",
 			"request": {
 				"auth": {
@@ -1895,6 +2098,111 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"count\": 4,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-08T13:06:41.649767+03:30\",\n            \"updated_time\": \"2021-12-08T13:34:20.994037+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                2,\n                3\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 2,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 2,\n            \"comments_count\": 4,\n            \"created_time\": \"2021-12-08T13:39:48.208418+03:30\",\n            \"updated_time\": \"2021-12-08T14:20:05.048658+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone_G3BU84n.png\",\n            \"caption\": \"test post 2\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                4,\n                5\n            ],\n            \"likes\": [\n                1,\n                3\n            ]\n        },\n        {\n            \"id\": 4,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:20.552750+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:18.612299+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_WG18Gll.jpeg\",\n            \"caption\": \"test post 4\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                2\n            ]\n        },\n        {\n            \"id\": 5,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 0,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 1,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T10:27:24.407932+03:30\",\n            \"updated_time\": \"2021-12-11T10:28:25.879591+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_dUASfrY.jpeg\",\n            \"caption\": \"test post 5\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": [\n                4\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "User Taged Posts List Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/post/taged/?taged_users=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"post",
+						"taged",
+						""
+					],
+					"query": [
+						{
+							"key": "taged_users",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Taged Posts List Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/post/taged/?taged_users=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"post",
+								"taged",
+								""
+							],
+							"query": [
+								{
+									"key": "taged_users",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 18 Dec 2021 07:54:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2166"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 3,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"ciros10888@swsguide.com\",\n                \"full_name\": \"iliya geramand\",\n                \"phone_number\": 9369241340,\n                \"avatar\": \"http://127.0.0.1:8000/media/profile_images/Screenshot_from_2021-12-14_16-03-21_etMmDBQ.png\",\n                \"bio\": \"hell yeah\",\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0,\n                \"other_social_medias\": {\n                    \"telegram\": \"test\",\n                    \"whatsapp\": \"test2\"\n                }\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T17:45:51.871798+03:30\",\n            \"updated_time\": \"2021-12-18T11:19:34.677641+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_Vy7Ovf5.jpeg\",\n            \"caption\": \"test post 9\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                1\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 8,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"bio\": \"\",\n                \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n                \"posts_count\": 7,\n                \"following_count\": 2,\n                \"followers_count\": 3,\n                \"other_social_medias\": {}\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-11T16:03:24.120068+03:30\",\n            \"updated_time\": \"2021-12-11T16:03:24.120122+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_WDk4TA4.jpeg\",\n            \"caption\": \"test post 8\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 1,\n            \"taged_users\": [\n                1,\n                5\n            ],\n            \"likes\": []\n        },\n        {\n            \"id\": 1,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"ciros10888@swsguide.com\",\n                \"full_name\": \"iliya geramand\",\n                \"phone_number\": 9369241340,\n                \"avatar\": \"http://127.0.0.1:8000/media/profile_images/Screenshot_from_2021-12-14_16-03-21_etMmDBQ.png\",\n                \"bio\": \"hell yeah\",\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 4,\n                \"following_count\": 1,\n                \"followers_count\": 0,\n                \"other_social_medias\": {\n                    \"telegram\": \"test\",\n                    \"whatsapp\": \"test2\"\n                }\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-08T13:06:41.649767+03:30\",\n            \"updated_time\": \"2021-12-12T11:52:09.629857+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/Image_created_with_a_mobile_phone.png\",\n            \"caption\": \"test post 1\",\n            \"location\": \"this\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [\n                1,\n                2,\n                3\n            ],\n            \"likes\": []\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -3310,209 +3618,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 9,\n            \"author_detail\": {\n                \"id\": 3,\n                \"username\": \"iliyagr\",\n                \"email\": \"yaxec21837@servergem.com\",\n                \"full_name\": \"iliyagr\",\n                \"phone_number\": null,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n                \"posts_count\": 5,\n                \"following_count\": 1,\n                \"followers_count\": 0\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 1,\n            \"created_time\": \"2021-12-11T17:45:51.871798+03:30\",\n            \"updated_time\": \"2021-12-11T17:45:51.871828+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_Vy7Ovf5.jpeg\",\n            \"caption\": \"test post 9\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 3,\n            \"taged_users\": [],\n            \"likes\": []\n        },\n        {\n            \"id\": 14,\n            \"author_detail\": {\n                \"id\": 1,\n                \"username\": \"aminml\",\n                \"email\": \"aminmohammadlou99@gmail.com\",\n                \"full_name\": \"Amin Mohammadlou\",\n                \"phone_number\": 9387425503,\n                \"avatar\": null,\n                \"created_time\": \"2021-12-08T10:25:34.636862+03:30\",\n                \"posts_count\": 7,\n                \"following_count\": 2,\n                \"followers_count\": 3\n            },\n            \"likes_count\": 0,\n            \"comments_count\": 0,\n            \"created_time\": \"2021-12-13T15:26:32.630097+03:30\",\n            \"updated_time\": \"2021-12-13T15:26:32.630129+03:30\",\n            \"image\": \"http://127.0.0.1:8000/media/post_images/download_QW7OIxt.jpeg\",\n            \"caption\": \"#azadi\",\n            \"location\": \"Tehran\",\n            \"is_archive\": false,\n            \"author\": 1,\n            \"taged_users\": [],\n            \"likes\": []\n        }\n    ]\n}"
-				}
-			]
-		},
-		{
-			"name": "User Edit Profile Request",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "username",
-							"value": "iliyagr",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "ciros10888@swsguide.com",
-							"type": "text"
-						},
-						{
-							"key": "phone_number",
-							"value": "09369241340",
-							"type": "text"
-						},
-						{
-							"key": "first_name",
-							"value": "iliya",
-							"type": "text"
-						},
-						{
-							"key": "last_name",
-							"value": "geramand",
-							"type": "text"
-						},
-						{
-							"key": "gender",
-							"value": "0",
-							"type": "text"
-						},
-						{
-							"key": "birthday",
-							"value": "1999-5-7",
-							"type": "text"
-						},
-						{
-							"key": "avatar",
-							"type": "file",
-							"src": "/home/amin/Pictures/Screenshot from 2021-12-14 16-03-21.png"
-						},
-						{
-							"key": "bio",
-							"value": "hell yeah",
-							"type": "text"
-						},
-						{
-							"key": "other_social_medias",
-							"value": "{\n    \"telegram\": \"test\",\n    \"whatsapp\": \"test2\"\n}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/users/{{user_id}}/update/",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"users",
-						"{{user_id}}",
-						"update",
-						""
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "User Edit Profile Request",
-					"originalRequest": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "iliyagr",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "ciros10888@swsguide.com",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "09369241340",
-									"type": "text"
-								},
-								{
-									"key": "first_name",
-									"value": "iliya",
-									"type": "text"
-								},
-								{
-									"key": "last_name",
-									"value": "geramand",
-									"type": "text"
-								},
-								{
-									"key": "gender",
-									"value": "0",
-									"type": "text"
-								},
-								{
-									"key": "birthday",
-									"value": "1999-5-7",
-									"type": "text"
-								},
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/home/amin/Pictures/Screenshot from 2021-12-14 16-03-21.png"
-								},
-								{
-									"key": "bio",
-									"value": "hell yeah",
-									"type": "text"
-								},
-								{
-									"key": "other_social_medias",
-									"value": "{\n    \"telegram\": \"test\",\n    \"whatsapp\": \"test2\"\n}",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}/users/{{user_id}}/update/",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users",
-								"{{user_id}}",
-								"update",
-								""
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Sat, 18 Dec 2021 07:23:44 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.10"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept"
-						},
-						{
-							"key": "Allow",
-							"value": "PUT, PATCH, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "440"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 3,\n    \"username\": \"iliyagr\",\n    \"email\": \"ciros10888@swsguide.com\",\n    \"full_name\": \"iliya geramand\",\n    \"phone_number\": 9369241340,\n    \"avatar\": \"http://127.0.0.1:8000/media/profile_images/Screenshot_from_2021-12-14_16-03-21_etMmDBQ.png\",\n    \"bio\": \"hell yeah\",\n    \"gender\": 0,\n    \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n    \"posts_count\": 4,\n    \"following_count\": 1,\n    \"followers_count\": 0,\n    \"birthday\": \"1999-05-07\",\n    \"other_social_medias\": {\n        \"telegram\": \"test\",\n        \"whatsapp\": \"test2\"\n    }\n}"
 				}
 			]
 		}

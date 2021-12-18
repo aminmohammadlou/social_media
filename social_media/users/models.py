@@ -53,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     )
     gender = models.SmallIntegerField(_('gender'), choices=GENDER_CHOICES, blank=True, null=True)
     birthday = models.DateField(_('birthday'), blank=True, null=True)
-    avatar = models.ImageField(_('avatar'), blank=True)
+    avatar = models.ImageField(_('avatar'), upload_to='profile_images', blank=True)
 
     bio = models.TextField(_('bio'), blank=True)
     other_social_medias = models.JSONField(verbose_name=_('other social medias'), blank=True, default=dict)

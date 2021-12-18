@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.cache import cache
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.models import update_last_login
@@ -233,8 +235,37 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'avatar', 'bio', 'created_time', 'posts_count',
-                  'following_count', 'followers_count']
+        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'avatar', 'bio', 'gender',
+                  'created_time', 'posts_count', 'following_count', 'followers_count', 'birthday',
+                  'other_social_medias']
+        extra_kwargs = {'gender': {'write_only': True},
+                        'birthday': {'write_only': True}}
+
+    def validate(self, attrs):
+        birthday = attrs.get('birthday')
+        first_name = attrs.get('first_name')
+        last_name = attrs.get('last_name')
+        email = attrs.get('email')
+
+        if birthday and birthday > datetime.date.today():
+            raise serializers.ValidationError({'error': {'message': 'birthday cant be greater than today',
+                                                         'code': 400}})
+
+        if first_name and not first_name.isalpha():
+            raise serializers.ValidationError({'error': {'message': 'first name must be alphabetic',
+                                                         'code': 400}})
+        if last_name and not last_name.isalpha():
+            raise serializers.ValidationError({'error': {'message': 'last name must be alphabetic',
+                                                         'code': 400}})
+
+        if email and (email != self.instance.email):
+            user = self.instance
+            user.is_verified = False
+            user.save()
+            email_data = email_generator(email)
+            send_verification_code_task.apply_async((email_data,))
+
+        return attrs
 
 
 class UserMinSerializer(serializers.ModelSerializer):

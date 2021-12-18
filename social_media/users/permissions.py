@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, IsAuthenticated
 
 User = get_user_model()
 
@@ -12,3 +12,8 @@ class IsOwnerOrFollower(BasePermission):
         return bool(
             request.user and request.user.is_authenticated and (
                     request.user.pk == view.kwargs['pk']) or request.user in owner.followers.all())
+
+
+class IsOwner(IsAuthenticated):
+    def has_object_permission(self, request, view, obj):
+        return obj == request.user

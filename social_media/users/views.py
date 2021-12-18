@@ -6,7 +6,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from .permissions import IsOwner
 from .serializers import (RegistrationSerializer, ForgetPasswordSerializer, SetPasswordSerializer, LoginSerializer,
                           ChangePasswordSerializer, UserSerializer, UserMinSerializer, VerifySerializer,
                           FollowSerializer)
@@ -171,9 +170,12 @@ class UserSearchAPIView(generics.ListAPIView):
 
 class UserUpdateAPIView(generics.UpdateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsOwner]
+    permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    def get_object(self):
+        return self.request.user
 
     def perform_update(self, serializer):
         if self.request.data.get('first_name') or self.request.data.get('last_name'):

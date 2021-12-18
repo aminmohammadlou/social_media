@@ -216,6 +216,7 @@ class UserSerializer(serializers.ModelSerializer):
     posts_count = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()
     followers_count = serializers.SerializerMethodField()
+    gender_display = serializers.CharField(source='get_gender_display', read_only=True)
 
     @staticmethod
     def get_full_name(user):
@@ -235,7 +236,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'avatar', 'bio', 'gender',
+        fields = ['id', 'username', 'email', 'full_name', 'phone_number', 'avatar', 'bio', 'gender', 'gender_display',
                   'created_time', 'posts_count', 'following_count', 'followers_count', 'birthday',
                   'other_social_medias']
         extra_kwargs = {'gender': {'write_only': True},

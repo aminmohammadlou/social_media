@@ -719,63 +719,71 @@
 								{
 									"key": "username",
 									"value": "iliyagr",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "email",
 									"value": "ciros10888@swsguide.com",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "phone_number",
-									"value": "09369241340",
+									"value": "09122244888",
 									"type": "text"
 								},
 								{
 									"key": "first_name",
-									"value": "iliya",
-									"type": "text"
+									"value": "Ali",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "last_name",
 									"value": "geramand",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "gender",
 									"value": "0",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "birthday",
-									"value": "1999-5-7",
-									"type": "text"
+									"value": "2001-10-14",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": "/home/amin/Pictures/Screenshot from 2021-12-14 16-03-21.png"
+									"src": "/home/amin/Pictures/images.png",
+									"disabled": true
 								},
 								{
 									"key": "bio",
-									"value": "hell yeah",
-									"type": "text"
+									"value": "MJ is Best. Bashe 3 bar",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "other_social_medias",
-									"value": "{\n    \"telegram\": \"test\",\n    \"whatsapp\": \"test2\"\n}",
-									"type": "text"
+									"value": "{\n    \"telegram\": \"Aligrtel\",\n    \"whatsapp\": \"Aligrwhats\"\n}",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/users/{{user_id}}/update/",
+							"raw": "{{base_url}}/users/update/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
-								"{{user_id}}",
 								"update",
 								""
 							]
@@ -787,7 +795,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Sat, 18 Dec 2021 07:23:44 GMT"
+							"value": "Sat, 18 Dec 2021 12:29:38 GMT"
 						},
 						{
 							"key": "Server",
@@ -811,7 +819,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "440"
+							"value": "408"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -823,7 +831,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 3,\n    \"username\": \"iliyagr\",\n    \"email\": \"ciros10888@swsguide.com\",\n    \"full_name\": \"iliya geramand\",\n    \"phone_number\": 9369241340,\n    \"avatar\": \"http://127.0.0.1:8000/media/profile_images/Screenshot_from_2021-12-14_16-03-21_etMmDBQ.png\",\n    \"bio\": \"hell yeah\",\n    \"gender\": 0,\n    \"created_time\": \"2021-12-08T13:05:24.335958+03:30\",\n    \"posts_count\": 4,\n    \"following_count\": 1,\n    \"followers_count\": 0,\n    \"birthday\": \"1999-05-07\",\n    \"other_social_medias\": {\n        \"telegram\": \"test\",\n        \"whatsapp\": \"test2\"\n    }\n}"
+					"body": "{\n    \"id\": 6,\n    \"username\": \"Aligr\",\n    \"email\": \"vajemif189@veb27.com\",\n    \"full_name\": \"Ali geramand\",\n    \"phone_number\": 9122244888,\n    \"avatar\": \"http://127.0.0.1:8000/media/profile_images/images.png\",\n    \"bio\": \"MJ is Best. Bashe 3 bar\",\n    \"gender_display\": \"Male\",\n    \"created_time\": \"2021-12-18T13:27:39.793091+03:30\",\n    \"posts_count\": 0,\n    \"following_count\": 0,\n    \"followers_count\": 0,\n    \"other_social_medias\": {\n        \"telegram\": \"Aligrtel\",\n        \"whatsapp\": \"Aligrwhats\"\n    }\n}"
 				}
 			]
 		},

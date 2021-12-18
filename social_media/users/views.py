@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
 from rest_framework import generics, status, filters
@@ -7,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from .permissions import IsOwnerOrFollower, IsOwner
+from .permissions import IsOwner
 from .serializers import (RegistrationSerializer, ForgetPasswordSerializer, SetPasswordSerializer, LoginSerializer,
                           ChangePasswordSerializer, UserSerializer, UserMinSerializer, VerifySerializer,
                           FollowSerializer)
@@ -114,30 +113,28 @@ class ChangePasswordAPIVIEW(generics.UpdateAPIView):
         return Response(data=data, status=status.HTTP_200_OK)
 
 
-class FollowingListAPIView(APIView):
+class FollowingListAPIView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsOwnerOrFollower]
-    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserMinSerializer
     throttle_scope = 'users'
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'first_name', 'last_name']
 
-    def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        followings = user.following.all()
-        serializer = self.serializer_class(followings, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        return User.objects.get(pk=self.kwargs['pk']).following.all()
 
 
-class FollowerListAPIView(APIView):
+class FollowerListAPIView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsOwnerOrFollower]
-    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserMinSerializer
     throttle_scope = 'users'
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'first_name', 'last_name']
 
-    def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        followers = user.followers.all()
-        serializer = self.serializer_class(followers, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        return User.objects.get(pk=self.kwargs['pk']).followers.all()
 
 
 class UserDetailAPIView(generics.RetrieveAPIView):

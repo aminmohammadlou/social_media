@@ -1135,6 +1135,13 @@
 						"{{user_id}}",
 						"following",
 						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -1160,6 +1167,13 @@
 								"{{user_id}}",
 								"following",
 								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1169,7 +1183,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Sat, 11 Dec 2021 12:21:20 GMT"
+							"value": "Sat, 18 Dec 2021 08:30:29 GMT"
 						},
 						{
 							"key": "Server",
@@ -1193,7 +1207,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "420"
+							"value": "181"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1205,7 +1219,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 2,\n        \"username\": \"mahdi\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"full_name\": \"\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T11:41:24.972557+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 0,\n        \"followers_count\": 1\n    },\n    {\n        \"id\": 4,\n        \"username\": \"test1\",\n        \"email\": \"test@test.com\",\n        \"full_name\": \"\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:07.865428+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 0,\n        \"followers_count\": 0\n    }\n]"
+					"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 2,\n            \"username\": \"mahdi\",\n            \"full_name\": \"mahdi\",\n            \"avatar\": null\n        },\n        {\n            \"id\": 4,\n            \"username\": \"test1\",\n            \"full_name\": \"Amir hosein\",\n            \"avatar\": null\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -1240,6 +1254,13 @@
 						"{{user_id}}",
 						"followers",
 						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "te",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -1265,6 +1286,13 @@
 								"{{user_id}}",
 								"followers",
 								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "te",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1274,7 +1302,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Sat, 11 Dec 2021 12:29:55 GMT"
+							"value": "Sat, 18 Dec 2021 09:01:34 GMT"
 						},
 						{
 							"key": "Server",
@@ -1298,7 +1326,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "644"
+							"value": "243"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -1310,7 +1338,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 2,\n        \"username\": \"mahdi\",\n        \"email\": \"aminmhml@gmail.com\",\n        \"full_name\": \"mahdi\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T11:41:24.972557+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 1\n    },\n    {\n        \"id\": 4,\n        \"username\": \"test1\",\n        \"email\": \"test@test.com\",\n        \"full_name\": \"test1\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:07.865428+03:30\",\n        \"posts_count\": 0,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    },\n    {\n        \"id\": 5,\n        \"username\": \"test2\",\n        \"email\": \"test2@test2.com\",\n        \"full_name\": \"test2\",\n        \"phone_number\": null,\n        \"avatar\": null,\n        \"created_time\": \"2021-12-08T14:15:26.801294+03:30\",\n        \"posts_count\": 2,\n        \"following_count\": 1,\n        \"followers_count\": 0\n    }\n]"
+					"body": "{\n    \"count\": 3,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 2,\n            \"username\": \"mahdi\",\n            \"full_name\": \"mahdi\",\n            \"avatar\": null\n        },\n        {\n            \"id\": 4,\n            \"username\": \"test1\",\n            \"full_name\": \"Amir hosein\",\n            \"avatar\": null\n        },\n        {\n            \"id\": 5,\n            \"username\": \"test2\",\n            \"full_name\": \"test2\",\n            \"avatar\": null\n        }\n    ]\n}"
 				}
 			]
 		},

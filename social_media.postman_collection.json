@@ -2149,21 +2149,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/posts/post/taged/?taged_users=1",
+					"raw": "{{base_url}}/posts/post/{{user_id}}/taged/",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"posts",
 						"post",
+						"{{user_id}}",
 						"taged",
 						""
-					],
-					"query": [
-						{
-							"key": "taged_users",
-							"value": "1"
-						}
 					]
 				}
 			},

@@ -204,12 +204,6 @@ class UserTagedPostAPIView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
-    queryset = Post.objects.filter(is_archive=False)
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['taged_users']
-    ordering = ['-created_time']
 
     def get_queryset(self):
-        if not self.request.query_params.get('taged_users'):
-            return Post.objects.none()
-        return self.queryset
+        return Post.objects.filter(taged_users=self.kwargs['pk'], is_archive=False).order_by('-created_time')

@@ -27,12 +27,14 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['author_id']
-    ordering = ['pk']
+    ordering = ['-created_time']
 
     def get_queryset(self):
         filter_params = {
             'list': {'is_archive': False},
-            'collection': {'savedpost__user': self.request.user}
+            'collection': {'savedpost__user': self.request.user},
+            'archived': {'author': self.request.user,
+                         'is_archive': True}
         }.get(self.action, dict())
 
         if self.action == 'home_page':
@@ -45,10 +47,14 @@ class PostViewSet(viewsets.ModelViewSet):
                     comment__author__in=self.request.user.following.all()), is_archive=False).exclude(
                 author=self.request.user).distinct()
 
+        if self.action == 'list' and not self.request.query_params.get('author_id'):
+            return Post.objects.none()
+
         return self.queryset.filter(**filter_params)
 
     def get_permissions(self):
-        if self.action == 'partial_update' or self.action == 'destroy':
+        actions = ['partial_update', 'update', 'destroy']
+        if self.action in actions:
             return [IsOwner()]
 
         return super(PostViewSet, self).get_permissions()
@@ -75,6 +81,10 @@ class PostViewSet(viewsets.ModelViewSet):
                                                    to_user_id=int(taged_user_id),
                                                    action=Notification.ACTION_CHOICES[2][0])
 
+    def perform_destroy(self, instance):
+        instance.image.delete()
+        super(PostViewSet, self).perform_destroy(instance)
+
     @action(methods=['post'], detail=True)
     def like(self, request, *args, **kwargs):
         user = request.user
@@ -90,16 +100,6 @@ class PostViewSet(viewsets.ModelViewSet):
             message = 'Post successfully liked'
         return Response(data={'post_id': post.id, 'message': message}, status=status.HTTP_200_OK)
 
-    @action(methods=['get'], detail=False)
-    def home_page(self, request, *args, **kwargs):
-        self.ordering = ['-created_time']
-        return self.list(request, *args, **kwargs)
-
-    @action(methods=['get'], detail=False)
-    def feed(self, request, *args, **kwargs):
-        self.ordering = ['-created_time']
-        return self.list(request, *args, **kwargs)
-
     @action(methods=['post'], detail=True)
     def collect(self, request, *args, **kwargs):
         post = self.get_object()
@@ -111,19 +111,30 @@ class PostViewSet(viewsets.ModelViewSet):
             SavedPost.objects.get(post=post, user=user).delete()
             data = {
                 'message': 'Post successfully removed from your collection',
-                'code': "200"
+                'code': 200
             }
         except ObjectDoesNotExist:
             SavedPost.objects.create(post=post, user=user)
             data = {
                 'message': 'Post successfully added to your collection',
-                'code': "200"
+                'code': 200
             }
         return Response(data=data)
 
     @action(methods=['get'], detail=False)
+    def home_page(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @action(methods=['get'], detail=False)
+    def feed(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @action(methods=['get'], detail=False)
     def collection(self, request, *args, **kwargs):
-        self.ordering = ['-created_time']
+        return self.list(request, *args, **kwargs)
+
+    @action(methods=['get'], detail=False)
+    def archived(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
 

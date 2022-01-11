@@ -181,7 +181,7 @@ class UserUpdateAPIView(generics.UpdateAPIView):
         if self.request.data.get('first_name') or self.request.data.get('last_name'):
             serializer.Meta.fields.append('first_name')
             serializer.Meta.fields.append('last_name')
-            serializer.Meta.extra_kwargs = {'first_name': {'write_only': True},
-                                            'last_name': {'write_only': True}}
+            serializer.Meta.extra_kwargs['first_name'] = {'write_only': True}
+            serializer.Meta.extra_kwargs['last_name'] = {'write_only': True}
 
         return super(UserUpdateAPIView, self).perform_update(serializer)

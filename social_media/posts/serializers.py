@@ -2,14 +2,14 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from users.serializers import UserSerializer
+from users.serializers import UserMinSerializer
 from .models import Post, Comment
 
 User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author_detail = UserSerializer(source='author', read_only=True)
+    author_detail = UserMinSerializer(source='author', read_only=True)
     likes_count = serializers.SerializerMethodField()
     comments_count = serializers.SerializerMethodField()
 
@@ -28,7 +28,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    author_detail = UserSerializer(source='author', read_only=True)
+    author_detail = UserMinSerializer(source='author', read_only=True)
     post_detail = PostSerializer(source='post', read_only=True)
     likes_count = serializers.SerializerMethodField()
     comments_count = serializers.SerializerMethodField()

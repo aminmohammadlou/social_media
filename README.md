@@ -1,2 +1,2 @@
 # social_media
-a social media project with django-restframework
+a social media project with DRF
